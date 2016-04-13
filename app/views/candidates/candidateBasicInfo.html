@@ -1,0 +1,109 @@
+<div class="panel mb25" data-ng-controller="candidateBasicInfoCtrl">
+  <div class="panel-body">
+    <div class="row no-margin">
+      <div class="col-lg-12">
+        <form class="form-horizontal" role="form">
+          <div class="form-group">
+            <label class="col-sm-2 control-label">PHONE</label>
+            <div class="col-sm-10">
+              <input type="number" ng-model="profileObj.phone_number" class="form-control">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">EMAIL ADDRESS</label>
+            <div class="col-sm-10">
+              <input type="text" ng-model="profileObj.email" class="form-control" id="emailfield" name="emailfield">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">FIRST NAME</label>
+            <div class="col-sm-10">
+              <input type="text" ng-model="profileObj.first_name" class="form-control">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">LAST NAME</label>
+            <div class="col-sm-10">
+              <input type="text" ng-model="profileObj.last_name" class="form-control">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">ADDRESS</label>
+            <div class="col-sm-10">
+              <input type="text" ng-model="profileObj.address1" class="form-control">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">CITY</label>
+            <div class="col-sm-10">
+              <input type="text" ng-model="profileObj.city" class="form-control">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">STATE</label>
+            <div class="col-sm-10">
+              <input type="text" ng-model="profileObj.state" class="form-control">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">ZIP CODE</label>
+            <div class="col-sm-10">
+              <input type="text" ng-model="profileObj.zip" class="form-control">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">SUMMARY</label>
+            <div class="col-sm-10">
+              <textarea class="form-control" ng-model="profileObj.summary" rows="3"></textarea>
+            </div>
+          </div>
+          <div class="wizard-pager">
+            <div class="pull-right">
+               <button class="btn btn-primary btn-xs" data-ng-click="createProfile()">Create Profile</button>
+            </div>
+        </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel-body">
+    <div class="row no-margin">
+      <div class="col-lg-12">
+        <form class="form-horizontal" role="form">
+          
+          <div class="form-group">
+            <label class="col-sm-2 control-label">SALARY</label>
+            <div class="col-sm-10">
+              <input type="number" ng-model="profileObj.salary" class="form-control">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-2 control-label">SALARY RANGE</label>
+            <div class="col-sm-10">
+              <input type="number" ng-model="profileObj.salary_range" class="form-control">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Total YRS. OF EXPERIENCE</label>
+            <div class="col-sm-10">
+              <input type="number" ng-model="profileObj.experience" class="form-control">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-2 control-label">LOOKING FOR A POSITION WITHIN RADIUS(IN MILES) OF CURRENT ADDRESS</label>
+            <div class="col-sm-10">
+              <input type="number" ng-model="profileObj.miles_radius" class="form-control">
+            </div>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+
+</div>
+

@@ -1,0 +1,13 @@
+.modal-footer {
+	border-top: none !important;
+}
+
+..modal-header {
+	padding: 10px;
+}
+
+.removeMargins {
+	margin-right:0 !important;
+	margin-left:0 !important;
+	margin-bottom:0 !important;
+}

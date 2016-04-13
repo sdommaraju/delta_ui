@@ -1,0 +1,20 @@
+<div class="modal-header">
+	<h4>{{ title }}</h4>
+</div>
+
+<div class="panel mb25">
+	<div class="panel-heading">
+	  Select the job to assign
+	</div>
+	<div class="col-xs-12 mb25">
+      	<select data-placeholder="Your Favorite Football Team" class="chosen ng-pristine ng-valid" style="width: 100%;" 
+      	ng-model="singleSelect">
+      		<option value="0" selected="selected" label="Select an Opening">Select an Opening</option>
+      		<option value="1" label="Java">Java</option>
+      	</select>
+    </div>
+</div>
+
+<div class="modal-footer">
+	<button ng-repeat="btn in buttons" ng-click="close(btn.result)" class="btn" ng-class="btn.cssClass">{{ btn.label }}</button>
+</div>
