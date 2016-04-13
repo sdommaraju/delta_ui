@@ -2,13 +2,13 @@
 angular
   .module('urbanApp')
   .service('Session', function () {
-  this.create = function (sessionId, userId, userRole) {
-    this.id = sessionId;
+  this.create = function (token, userId, userRole) {
+    this.token = token;
     this.userId = userId;
     this.userRole = userRole;
   };
   this.destroy = function () {
-    this.id = null;
+    this.token = null;
     this.userId = null;
     this.userRole = null;
   };

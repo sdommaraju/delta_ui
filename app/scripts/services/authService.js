@@ -3,7 +3,7 @@
 function authService($http, ajaxService) {
   var output  = {},
       urls    = {
-        login: 'http://delta.net/api/access_token'
+        login: 'http://delta.srinutech.com/api/access_token'
         //login: 'http://localhost:9001/views/auth.json'
       };
 

@@ -2,18 +2,32 @@
 
 angular
   .module('urbanApp')
-  .run(['$rootScope', '$state', '$stateParams',
-        function ($rootScope, $state, $stateParams) {
+  .run(['$rootScope', '$location','$state', '$stateParams', 'AUTH_EVENTS', 'AuthService',
+        function ($rootScope, $location, $state, $stateParams, AUTH_EVENTS, AuthService) {
       $rootScope.$state = $state;
       $rootScope.$stateParams = $stateParams;
       $rootScope.$on('$stateChangeSuccess', function () {
         window.scrollTo(0, 0);
       });
+
+      $rootScope.$on('$stateChangeStart', function (event, next) {
+
+        var isLogin = next.name === "login";
+        if(!isLogin){
+           if(!AuthService.isAuthenticated()) {
+              $location.path('/login');
+          }
+        }
+        
+        
+
+      });
+
       FastClick.attach(document.body);
         },
     ])
-  .config(['$stateProvider', '$urlRouterProvider',
-    function ($stateProvider, $urlRouterProvider) {
+  .config(['$stateProvider', '$urlRouterProvider','USER_ROLES',
+    function ($stateProvider, $urlRouterProvider,USER_ROLES) {
 
       // For unmatched routes
       $urlRouterProvider.otherwise('/');
@@ -25,6 +39,19 @@ angular
           templateUrl: 'views/common/layout.html',
         })
 
+      .state('user.login', {
+          url: '/login',
+          templateUrl: 'views/login.html',
+          resolve: {
+            deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+              return $ocLazyLoad.load('scripts/controllers/login.js');
+                    }]
+          },
+          data: {
+            appClasses: 'bg-white usersession',
+            contentClasses: 'full-height'
+          }
+        })
 
       .state('app.dashboard', {
         url: '/',
@@ -62,6 +89,7 @@ angular
         },
         data: {
           title: 'Dashboard',
+          authorizedRoles: [USER_ROLES.admin, USER_ROLES.editor]
         }
       })
       
@@ -1091,7 +1119,7 @@ angular
           templateUrl: 'views/extras-signin.html',
           resolve: {
             deps: ['$ocLazyLoad', function ($ocLazyLoad) {
-              return $ocLazyLoad.load('scripts/controllers/session.js');
+              return $ocLazyLoad.load('scripts/controllers/login.js');
                     }]
           },
           data: {
