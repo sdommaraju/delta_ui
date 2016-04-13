@@ -48,10 +48,13 @@ function wizardCtrl($scope) {
     onNext: function () {
       var $valid = angular.element('#commentForm').valid(),
         $validator;
-      if (!$valid) {
-        $validator.focusInvalid();
-        return false;
-      }
+
+        if (!$valid) {
+          $validator.focusInvalid();
+          return false;
+        }
+
+        // Fetch Agency Account Details
     },
     onTabClick: function () {
       return false;

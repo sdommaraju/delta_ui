@@ -65,6 +65,51 @@ angular
         }
       })
       
+      .state('app.agencies', {
+        templateUrl: 'views/agencies/agencies.html',
+        resolve: {
+            deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+              return $ocLazyLoad.load('scripts/controllers/agencies/agencies.js')
+              }]
+          },
+          data: {
+            title: 'Agencies',
+          },
+          url: '/agencies',
+      })
+
+      .state('app.register-agency', {
+        templateUrl: 'views/agencies/create-agency.html',
+        url: '/register-agency',
+        resolve: {
+            deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+              return $ocLazyLoad.load([
+                {
+                  insertBefore: '#load_styles_before',
+                  files: [
+                                'vendor/checkbo/src/0.1.4/css/checkBo.min.css',
+                                'vendor/chosen_v1.4.0/chosen.min.css'
+                            ]
+                        },
+                {
+                  files: [
+                                'vendor/checkbo/src/0.1.4/js/checkBo.min.js',
+                                'vendor/chosen_v1.4.0/chosen.jquery.min.js',
+                                'vendor/card/lib/js/jquery.card.js',
+                                'vendor/bootstrap/js/tab.js',
+                                'vendor/jquery-validation/dist/jquery.validate.min.js',
+                                'vendor/twitter-bootstrap-wizard/jquery.bootstrap.wizard.min.js'
+                            ]
+                        }]).then(function () {
+                return $ocLazyLoad.load('scripts/controllers/agencies/registeragency.js');
+              });
+                    }]
+          },
+        data: {
+            title: 'Register new Agencies',
+          }
+      })
+
       .state('app.openings', {
         templateUrl: 'views/candidates/candidateBasicInfo.html',
           url: '/openings',

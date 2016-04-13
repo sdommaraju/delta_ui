@@ -1,0 +1,103 @@
+<div data-ng-controller="registerAgencyCtrl" ui-jq="checkBo">
+  <form id="agencyForm" class="form-horizontal" role="form" ui-jq="validate" ui-options="validationOpt">
+    <div class="box-tab justified" id="rootwizard" ui-jq="bootstrapWizard" ui-options="wizardOpt">
+      <ul class="nav nav-tabs">
+        <li><a href="#tab1" data-toggle="tab">Account details</a>
+        </li>
+        <li><a href="#tab2" data-toggle="tab">Agency Details</a>
+        </li>
+        <li><a href="#tab3" data-toggle="tab"></a>
+        </li>
+      </ul>
+
+      <div class="tab-content">
+        <div class="tab-pane" id="tab1">
+          <div class="form-group">
+            <label class="col-sm-2 control-label">First Name</label>
+            <div class="col-sm-4">
+              <input type="text" class="form-control" ng-model="agency.first_name" id="first_name" name="first_name">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Last Name</label>
+            <div class="col-sm-4">
+              <input type="text" class="form-control" ng-model="agency.last_name" id="last_name" name="last_name">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Email address</label>
+            <div class="col-sm-4">
+              <input type="text" class="form-control" ng-model="agency.email" id="email" name="email">
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Password</label>
+            <div class="col-sm-4">
+              <input type="password" class="form-control" ng-model="agency.password" id="password" name="password">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Confirm password</label>
+            <div class="col-sm-4">
+              <input type="password" class="form-control" id="confirm_password" name="confirm_password">
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane" id="tab2">
+          <div class="form-group">
+            <label class="col-sm-4 control-label">Company/Organization</label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control" ng-model="agency.name" id="name" name="name">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-4 control-label">Phone Number</label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control" ng-model="agency.phone_number" id="phone_number" name="phone_number">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-4 control-label">Email</label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control" value="{{agency.email}}" disabled="">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-4 control-label">Address</label>
+            <div class="col-sm-6">
+              <textarea class="form-control" rows="3" ng-model="agency.address" name="address" id="address"></textarea>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-4 control-label">City</label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control" ng-model="agency.city" id="city" name="city">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-4 control-label">State</label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control" ng-model="agency.state" id="state" name="state">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-4 control-label">Zip Code</label>
+            <div class="col-sm-6">
+              <input type="text" class="form-control" ng-model="agency.zipcode" id="zipcode" name="zipcode">
+            </div>
+          </div>
+        </div>
+        
+        <div class="tab-pane" id="tab3">Congradulations your account has been created</div>
+
+        <div class="wizard-pager">
+          <div class="pull-right">
+           <button type="button" class="btn btn-primary button-next">Next</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
