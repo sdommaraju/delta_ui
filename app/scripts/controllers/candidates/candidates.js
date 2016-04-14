@@ -17,20 +17,11 @@ function candidatesCtrl($scope, $location, authService, candidateService) {
   }
 
   $scope.init = function () {
-    authService.fnLogin({
-      username:'sdommaraju@innominds.com',
-      password:'innominds'
-    }).then(function(){
-      
-      candidateService.fnGetCandidates({}).then(function(data){
+   candidateService.fnGetCandidates({}).then(function(data){
         $scope.candidates = data.data;
       },function(){
         console.log("in candidateCtrl error:",arguments);
       });
-
-    },function(){
-      console.log("in candidateCtrl error:",arguments);
-    });
 
     
   }

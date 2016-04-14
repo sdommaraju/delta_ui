@@ -115,15 +115,10 @@ angular
                 {
                   insertBefore: '#load_styles_before',
                   files: [
-                                'vendor/checkbo/src/0.1.4/css/checkBo.min.css',
-                                'vendor/chosen_v1.4.0/chosen.min.css'
                             ]
                         },
                 {
                   files: [
-                                'vendor/checkbo/src/0.1.4/js/checkBo.min.js',
-                                'vendor/chosen_v1.4.0/chosen.jquery.min.js',
-                                'vendor/card/lib/js/jquery.card.js',
                                 'vendor/bootstrap/js/tab.js',
                                 'vendor/jquery-validation/dist/jquery.validate.min.js',
                                 'vendor/twitter-bootstrap-wizard/jquery.bootstrap.wizard.min.js'
@@ -135,6 +130,27 @@ angular
           },
         data: {
             title: 'Register new Agencies',
+          }
+      })
+
+      .state('app.edit-agency', {
+        templateUrl: 'views/agencies/edit-agency.html',
+        url: '/edit-agency/:id',
+        resolve: {
+            deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                    return $ocLazyLoad.load([
+                     
+                      {
+                        files: [
+                                      'vendor/jquery-validation/dist/jquery.validate.min.js',
+                                  ]
+                              }]).then(function () {
+                      return $ocLazyLoad.load('scripts/controllers/agencies/editagency.js');
+                    });
+                    }]
+          },
+        data: {
+            title: 'Update Agency',
           }
       })
 

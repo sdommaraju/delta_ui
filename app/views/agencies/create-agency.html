@@ -2,7 +2,7 @@
   <form id="agencyForm" class="form-horizontal" role="form" ui-jq="validate" ui-options="validationOpt">
     <div class="box-tab justified" id="rootwizard" ui-jq="bootstrapWizard" ui-options="wizardOpt">
       <ul class="nav nav-tabs">
-        <li><a href="#tab1" data-toggle="tab">Account details</a>
+        <li><a href="#tab1" data-toggle="tab">Account Details</a>
         </li>
         <li><a href="#tab2" data-toggle="tab">Agency Details</a>
         </li>
@@ -85,7 +85,7 @@
           <div class="form-group">
             <label class="col-sm-4 control-label">Zip Code</label>
             <div class="col-sm-6">
-              <input type="text" class="form-control" ng-model="agency.zipcode" id="zipcode" name="zipcode">
+              <input type="text" class="form-control" ng-model="agency.zip" id="zip" name="zip">
             </div>
           </div>
         </div>
@@ -94,7 +94,7 @@
 
         <div class="wizard-pager">
           <div class="pull-right">
-           <button type="button" class="btn btn-primary button-next">Next</button>
+           <button type="button" class="btn btn-primary button-next" id="next-button">Next</button>
           </div>
         </div>
       </div>

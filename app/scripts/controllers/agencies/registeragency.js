@@ -3,6 +3,7 @@
 function registerAgencyCtrl($scope, $location, agenciesService) {
 
 	$scope.agency = {};
+	$scope.agencyDetails = {};
 	$scope.action = 'account';
 	$scope.validationOpt = {
 	    rules: {
@@ -36,9 +37,22 @@ function registerAgencyCtrl($scope, $location, agenciesService) {
 	  };
 
   $scope.registerAgency = function(agency){
-
-  	
+  	debugger;
+  	agenciesService.fnAddAgencyAccount(agency).then(function(response){
+	    $scope.agencyDetails = response.data.data;
+	  },function(){
+	    console.log("in candidateCtrl error:",arguments);
+	  });
   	$scope.action = 'agency';
+  }
+  $scope.updateAgency = function(agency){
+  	debugger;
+  	agenciesService.fnUpdateAgencyDetails($scope.agencyDetails.id,agency).then(function(response){
+	    $scope.agencyDetails = response.data.data;
+	  },function(){
+	    console.log("in candidateCtrl error:",arguments);
+	  });
+  	$scope.action = 'account';
   }
   $scope.wizardOpt = {
     tabClass: '',
@@ -47,7 +61,7 @@ function registerAgencyCtrl($scope, $location, agenciesService) {
     'firstSelector': '.button-first',
     'lastSelector': '.button-last',
     onNext: function () {
-      var $valid = angular.element('#agencyForm').valid(),
+     var $valid = angular.element('#agencyForm').valid(),
         $validator;
       if (!$valid) {
         $validator.focusInvalid();
@@ -55,9 +69,11 @@ function registerAgencyCtrl($scope, $location, agenciesService) {
       }
 
       if($scope.action=='account'){
-      	$scope.registerAgency($scope.agency);	
+      	$scope.registerAgency($scope.agency);
+      	angular.element('#next-button').html('Finish');
       } else {
       	$scope.updateAgency($scope.agency);
+      	angular.element('#next-button').html('Success');
       }
       
 

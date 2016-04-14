@@ -3,10 +3,15 @@ angular
   .module('urbanApp')
   .factory('AuthService', function ($http, Session, ajaxService) {
   var authService = {};
- 
+  var userData = {
+    token:"",
+    userId:"",
+    roleId:"",
+    userName:""
+  };
   var output  = {},
       urls    = {
-        login: 'http://delta.srinutech.com/api/access_token'
+        login: 'http://delta.net/api/access_token'
         //login: 'http://localhost:9001/views/auth.json'
       };
 
@@ -15,9 +20,9 @@ angular
         url:urls.login,
         data:credentials
       }).then(function(response){
-        Session.create(response.access_token, 1,
-                       'admin');
-        return response.data;
+        userData.token = response.data.access_token;
+        Session.setUserData(userData);
+        return userData;
       }, function(error){
         return error;
       });
@@ -25,7 +30,8 @@ angular
   };
  
   authService.isAuthenticated = function () {
-    return !!Session.userId;
+    userData = Session.getUserData();
+    return !!userData.token;
   };
  
   authService.isAuthorized = function (authorizedRoles) {

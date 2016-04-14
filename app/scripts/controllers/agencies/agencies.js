@@ -1,29 +1,23 @@
 'use strict';
 
-function agenciesCtrl($scope, $state, $location, authService, agenciesService) {
+function agenciesCtrl($scope, $state, $location, AuthService, agenciesService) {
 
   $scope.agencies = {};
+  $scope.agency = {};
 
   $scope.registerNewAgency = function () {
     $state.go('app.register-agency');
   }
-
+  
+  $scope.editAgency = function(agencyId) {
+    $state.go('app.edit-agency',{"id": agencyId}); 
+  }
   $scope.init = function () {
-    authService.fnLogin({
-      username:'sdommaraju@innominds.com',
-      password:'innominds'
-    }).then(function(){
-      
-      agenciesService.fnGetAgencies({}).then(function(data){
+    agenciesService.fnGetAgencies({}).then(function(data){
         $scope.agencies = data.data;
       },function(){
         console.log("in candidateCtrl error:",arguments);
       });
-
-    },function(){
-      console.log("in candidateCtrl error:",arguments);
-    });
-
     
   }
 
@@ -33,4 +27,4 @@ function agenciesCtrl($scope, $state, $location, authService, agenciesService) {
 
 angular
   .module('urbanApp')
-  .controller('agenciesCtrl', ['$scope','$state', '$location', 'authService', 'agenciesService', agenciesCtrl]);
+  .controller('agenciesCtrl', ['$scope','$state', '$location', 'AuthService', 'agenciesService', agenciesCtrl]);

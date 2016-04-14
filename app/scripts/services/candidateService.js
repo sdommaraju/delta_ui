@@ -3,8 +3,8 @@
 function candidateService($http, ajaxService) {
   var output  = this,
       urls    = {
-        addProfile: 'http://delta.srinutech.com/api/candidate',
-        getCandidates: 'http://delta.srinutech.com/api/candidate',
+        addProfile: 'http://delta.net/api/candidate',
+        getCandidates: 'http://delta.net/api/candidate',
       };
 
   output.fnGetData = function (oData) {
