@@ -10,6 +10,7 @@
  */
 angular
   .module('urbanApp', [
+    'ngRoute',
     'ui.router',
     'ngAnimate',
     'ui.bootstrap',

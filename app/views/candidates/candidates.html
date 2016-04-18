@@ -2,7 +2,8 @@
   <div class="panel">
     <div class="panel-heading">
       Candidates
-      <button class="btn btn-primary btn-xs pull-right" data-ng-click="testFunction()">Create a new Candidate</button>
+      <button class="btn btn-primary btn-xs pull-right" data-ng-click="createCandiate()">Create a new Candidate</button>
+      <button class="btn btn-primary btn-xs pull-right" data-ng-click="skillSearch()">Skill Search</button>
     </div>
     <div class="panel-body">
       <table class="table table-bordered table-hover table-condensed align-middle">
@@ -18,7 +19,7 @@
           <td>
             <!-- editable username (text with validation) -->
             <span editable-text="user.name" e-name="name" e-form="rowform" e-required>
-              {{ candidate.first_name + candidate.last_name || 'empty' }}
+              {{ candidate.first_name +' '+ candidate.last_name || 'empty' }}
             </span>
           </td>
           <td>

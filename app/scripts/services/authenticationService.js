@@ -20,6 +20,7 @@ angular
         url:urls.login,
         data:credentials
       }).then(function(response){
+        debugger;
         userData.token = response.data.access_token;
         Session.setUserData(userData);
         return userData;

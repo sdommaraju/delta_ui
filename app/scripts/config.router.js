@@ -2,8 +2,8 @@
 
 angular
   .module('urbanApp')
-  .run(['$rootScope', '$location','$state', '$stateParams', 'AUTH_EVENTS', 'AuthService',
-        function ($rootScope, $location, $state, $stateParams, AUTH_EVENTS, AuthService) {
+  .run(['$rootScope', '$location','$state', '$routeParams', '$stateParams', 'AUTH_EVENTS', 'AuthService',
+        function ($rootScope, $location, $state, $routeParams, $stateParams, AUTH_EVENTS, AuthService) {
       $rootScope.$state = $state;
       $rootScope.$stateParams = $stateParams;
       $rootScope.$on('$stateChangeSuccess', function () {
@@ -182,7 +182,7 @@ angular
           data: {
             title: 'Candidates',
           },
-          url: '/candidateadd'
+          url: '/candidateadd/:page'
       })
 
       .state('app.candidateedit', {

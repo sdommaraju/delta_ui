@@ -1,19 +1,17 @@
 'use strict';
 
-function candidatesCtrl($scope, $location, authService, candidateService) {
+function candidatesCtrl($scope, $state, $location, authService, candidateService) {
 
   $scope.candidates = {};
 
-  $scope.testFunction = function () {
-    $location.path('/candidateadd');
-    authService.fnLogin({
-      username:'sdommaraju@innominds.com',
-      password:'innominds'
-    }).then(function(){
-      console.log("in candidateCtrl success:",arguments);
-    },function(){
-      console.log("in candidateCtrl error:",arguments);
-    });
+  $scope.createCandiate = function () {
+    
+   
+    $state.go('app.candidateadd',{"page": 'create'});
+  }
+
+  $scope.skillSearch = function () {
+    $state.go('app.candidateadd',{"page": 'search'});
   }
 
   $scope.init = function () {
@@ -22,8 +20,6 @@ function candidatesCtrl($scope, $location, authService, candidateService) {
       },function(){
         console.log("in candidateCtrl error:",arguments);
       });
-
-    
   }
 
   $scope.init();
@@ -32,4 +28,4 @@ function candidatesCtrl($scope, $location, authService, candidateService) {
 
 angular
   .module('urbanApp')
-  .controller('candidatesCtrl', ['$scope','$location', 'authService', 'candidateService', candidatesCtrl]);
+  .controller('candidatesCtrl', ['$scope','$state', '$location', 'authService', 'candidateService', candidatesCtrl]);
