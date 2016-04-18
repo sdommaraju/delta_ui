@@ -59,8 +59,7 @@ function candidateBasicInfoCtrl($scope, $location, candidateService, $rootScope,
 	    candidateService.searchBySkills(
 	   oSkills).then(function(){
 	    console.log("in candidateCtrl success:",arguments);
-	    //$rootScope.profileData = 
-	    $location.path('/candidateuploaddata');
+	    $scope.requestType = 'search-results';
 	   },function(){
 	    console.log("in candidateCtrl success:",arguments);
 	   });

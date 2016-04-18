@@ -60,10 +60,9 @@ function candidateService($http, ajaxService) {
   }
 
   output.searchBySkills = function (oData) {
-    debugger;
     return ajaxService.fnGetData({
       url:urls.search,
-      data:oData}).then(function(response){
+      data : {skills:oData.skills}}).then(function(response){
       return response;
     }, function(error){
       return error;
