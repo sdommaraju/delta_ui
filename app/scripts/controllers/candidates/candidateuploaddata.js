@@ -2,6 +2,7 @@
 
 function candidateUploadCtrl($scope, $location, $modal, candidateService) {
 
+	$scope.candidateId = $scope.$stateParams.candidateId;
   $scope.assignOpening = function () {
 	$modal.open({
 	    backdrop: true,
@@ -40,7 +41,7 @@ function candidateUploadCtrl($scope, $location, $modal, candidateService) {
 
   $scope.skillsObj = {};
   $scope.addMoreSkills = function () {
-  	$scope.skillsObj.id			=  5;
+  	$scope.skillsObj.id		=  $scope.candidateId;
   	$scope.skillsObj.skill 	= $scope.skill;
 	$scope.skillsObj.experience = 7;
   	

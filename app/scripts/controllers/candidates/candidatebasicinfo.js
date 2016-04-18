@@ -1,6 +1,6 @@
 'use strict';
 
-function candidateBasicInfoCtrl($scope, $location, candidateService, $rootScope, $routeParams) {
+function candidateBasicInfoCtrl($scope, $state, $location, candidateService, $rootScope, $routeParams) {
 
 	$scope.profileObj = {
 		"id": 4,
@@ -27,10 +27,10 @@ function candidateBasicInfoCtrl($scope, $location, candidateService, $rootScope,
 
   	$scope.createProfile = function () {
 		candidateService.fnAddProfile(
-			$scope.profileObj).then(function(){
-				console.log("in candidateCtrl success:",arguments);
+			$scope.profileObj).then(function(response){
 				//$rootScope.profileData = 
-				$location.path('/candidateuploaddata');
+				//$location.path('/candidateuploaddata');
+				$state.go('app.candidateuploaddata',{"candidateId": response.data.id});
 			},function(){
 				console.log("in candidateCtrl success:",arguments);
 			});
@@ -53,7 +53,9 @@ function candidateBasicInfoCtrl($scope, $location, candidateService, $rootScope,
   		var oSkills = {},
 	     skillsArr = [];
 
-	    skillsArr.push({"skill":$scope.search.keyword, "experience":$scope.search.years});
+	    var skill1 = {};
+	    skill1[$scope.search.keyword] = $scope.search.years;
+	    skillsArr.push(skill1);
 	    oSkills.skills = JSON.stringify(skillsArr);
 
 	    candidateService.searchBySkills(
@@ -68,4 +70,4 @@ function candidateBasicInfoCtrl($scope, $location, candidateService, $rootScope,
 
 angular
   .module('urbanApp')
-  .controller('candidateBasicInfoCtrl', ['$scope','$location','candidateService', '$rootScope', '$routeParams', candidateBasicInfoCtrl]);
+  .controller('candidateBasicInfoCtrl', ['$scope','$state','$location','candidateService', '$rootScope', '$routeParams', candidateBasicInfoCtrl]);

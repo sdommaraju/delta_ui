@@ -221,7 +221,7 @@ angular
           data: {
             title: 'candidatesUploadCtrl',
           },
-          url: '/candidateuploaddata'
+          url: '/candidateuploaddata/:candidateId'
       })
 
       // UI Routes
