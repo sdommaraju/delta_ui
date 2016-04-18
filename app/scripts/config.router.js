@@ -2,18 +2,32 @@
 
 angular
   .module('urbanApp')
-  .run(['$rootScope', '$state', '$stateParams',
-        function ($rootScope, $state, $stateParams) {
+  .run(['$rootScope', '$location','$state', '$routeParams', '$stateParams', 'AUTH_EVENTS', 'AuthService',
+        function ($rootScope, $location, $state, $routeParams, $stateParams, AUTH_EVENTS, AuthService) {
       $rootScope.$state = $state;
       $rootScope.$stateParams = $stateParams;
       $rootScope.$on('$stateChangeSuccess', function () {
         window.scrollTo(0, 0);
       });
+
+      $rootScope.$on('$stateChangeStart', function (event, next) {
+
+        var isLogin = next.name === "login";
+        if(!isLogin){
+           if(!AuthService.isAuthenticated()) {
+              $location.path('/login');
+          }
+        }
+        
+        
+
+      });
+
       FastClick.attach(document.body);
         },
     ])
-  .config(['$stateProvider', '$urlRouterProvider',
-    function ($stateProvider, $urlRouterProvider) {
+  .config(['$stateProvider', '$urlRouterProvider','USER_ROLES',
+    function ($stateProvider, $urlRouterProvider,USER_ROLES) {
 
       // For unmatched routes
       $urlRouterProvider.otherwise('/');
@@ -25,6 +39,19 @@ angular
           templateUrl: 'views/common/layout.html',
         })
 
+      .state('user.login', {
+          url: '/login',
+          templateUrl: 'views/login.html',
+          resolve: {
+            deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+              return $ocLazyLoad.load('scripts/controllers/login.js');
+                    }]
+          },
+          data: {
+            appClasses: 'bg-white usersession',
+            contentClasses: 'full-height'
+          }
+        })
 
       .state('app.dashboard', {
         url: '/',
@@ -62,9 +89,71 @@ angular
         },
         data: {
           title: 'Dashboard',
+          authorizedRoles: [USER_ROLES.admin, USER_ROLES.editor]
         }
       })
       
+      .state('app.agencies', {
+        templateUrl: 'views/agencies/agencies.html',
+        resolve: {
+            deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+              return $ocLazyLoad.load('scripts/controllers/agencies/agencies.js')
+              }]
+          },
+          data: {
+            title: 'Agencies',
+          },
+          url: '/agencies',
+      })
+
+      .state('app.register-agency', {
+        templateUrl: 'views/agencies/create-agency.html',
+        url: '/register-agency',
+        resolve: {
+            deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+              return $ocLazyLoad.load([
+                {
+                  insertBefore: '#load_styles_before',
+                  files: [
+                            ]
+                        },
+                {
+                  files: [
+                                'vendor/bootstrap/js/tab.js',
+                                'vendor/jquery-validation/dist/jquery.validate.min.js',
+                                'vendor/twitter-bootstrap-wizard/jquery.bootstrap.wizard.min.js'
+                            ]
+                        }]).then(function () {
+                return $ocLazyLoad.load('scripts/controllers/agencies/registeragency.js');
+              });
+                    }]
+          },
+        data: {
+            title: 'Register new Agencies',
+          }
+      })
+
+      .state('app.edit-agency', {
+        templateUrl: 'views/agencies/edit-agency.html',
+        url: '/edit-agency/:id',
+        resolve: {
+            deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                    return $ocLazyLoad.load([
+                     
+                      {
+                        files: [
+                                      'vendor/jquery-validation/dist/jquery.validate.min.js',
+                                  ]
+                              }]).then(function () {
+                      return $ocLazyLoad.load('scripts/controllers/agencies/editagency.js');
+                    });
+                    }]
+          },
+        data: {
+            title: 'Update Agency',
+          }
+      })
+
       .state('app.openings', {
         templateUrl: 'views/candidates/candidateBasicInfo.html',
           url: '/openings',
@@ -93,7 +182,7 @@ angular
           data: {
             title: 'Candidates',
           },
-          url: '/candidateadd'
+          url: '/candidateadd/:page'
       })
 
       .state('app.candidateedit', {
@@ -1046,7 +1135,7 @@ angular
           templateUrl: 'views/extras-signin.html',
           resolve: {
             deps: ['$ocLazyLoad', function ($ocLazyLoad) {
-              return $ocLazyLoad.load('scripts/controllers/session.js');
+              return $ocLazyLoad.load('scripts/controllers/login.js');
                     }]
           },
           data: {

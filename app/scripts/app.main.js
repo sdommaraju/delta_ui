@@ -2,11 +2,19 @@
 
 angular
   .module('urbanApp')
-  .controller('AppCtrl', ['$scope', '$http', '$localStorage',
-        function AppCtrl($scope, $http, $localStorage) {
+  .controller('AppCtrl', ['$scope', '$http', '$localStorage','USER_ROLES','AuthService',
+        function AppCtrl($scope, $http, $localStorage,USER_ROLES,AuthService) {
 
       $scope.mobileView = 767;
 
+      $scope.currentUser = null;
+      $scope.userRoles = USER_ROLES;
+      $scope.isAuthorized = AuthService.isAuthorized;
+     
+      $scope.setCurrentUser = function (user) {
+        $scope.currentUser = user;
+      };
+      
       $scope.app = {
         name: 'Urban',
         author: 'Nyasha',

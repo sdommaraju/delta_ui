@@ -1,17 +1,68 @@
-<div class="panel mb25" data-ng-controller="candidateUploadCtrl">
-	<div class="panel-body">
-	    <div class="row no-margin">
-	      <div class="col-lg-12">
-	        <form class="form-horizontal" role="form">
-	          
-	          <button class="btn btn-primary btn-xs pull-right" data-ng-click="assignOpening()">Assign another Opening</button>
+<div class="row" data-ng-controller="candidateUploadCtrl">
+<div class="row" >
+	<div class="panel mb25 col-lg-3 col-sm-12" style="background: transparent;">
+		<div class="panel-body" style="margin:0px 5px;background: #fff;">
+		    <div class="row no-margin">
+		      <div class="col-lg-12">
+		        <form class="form-horizontal" role="form">
+		          <label>Profile Box</label>
+		          <div>{{name}}</div>
+		          <div>{{email}}</div>
+		          <div>{{phone}}</div>
+		        </form>
+		      </div>
+		    </div>
+		  </div>
+	</div>
 
-	          
-	          <button class="btn btn-primary btn-xs pull-right" data-ng-click="uploadDocument()">Upload a Document</button>
+	<div class="panel mb25 col-lg-9 col-sm-12" style="background: transparent;">
+		<div class="panel-body" style="margin:0px 5px;background: #fff;">
+		    <div class="row no-margin">
+		      <div class="col-lg-12">
+		        <form class="form-horizontal" role="form">
+		          <label></label>
+		          <button class="btn btn-primary btn-xs pull-right" data-ng-click="assignOpening()">Assign another Opening</button>
 
-	        </form>
-	      </div>
-	    </div>
-	  </div>
+		        </form>
+		      </div>
+		    </div>
+		  </div>
+	</div>
+	</div>
+	<div class="row" >
+		<div class="panel mb25 col-lg-6 col-sm-12" style="background: transparent;">
+			  <div class="panel-body" style="margin:0px 5px;background: #fff;">
+			    <div class="row no-margin">
+			      <div class="col-lg-12">
+			        <form class="form-horizontal" role="form">
+			          <label>Documents</label>
+			          <button class="btn btn-primary btn-xs pull-right" data-ng-click="uploadDocument()">Upload a Document</button>
 
+			        </form>
+			      </div>
+			    </div>
+			  </div>
+		</div>
+
+		<div class="panel mb25 col-lg-6 col-sm-12" style="background: transparent;">
+			  <div class="panel-body" style="margin:0px 5px;background: #fff;">
+			    <div class="row no-margin">
+			      <div class="col-lg-12">
+			        <form class="form-horizontal" role="form">
+			          <label>Skills</label>		
+          			  <div clas="row">
+	          			  <div class="col-lg-8">
+							<input type="text" ng-model="skill" class="form-control" id="emailfield" name="emailfield">
+	          	          </div> 
+	          	          <div class="col-lg-4">
+	          	          	 <button class="btn btn-primary btn-xs pull-right" data-ng-click="addMoreSkills()">Add More Skills</button>
+	          	          </div> 
+          			  </div>
+			          	   
+			        </form>
+			      </div>
+			    </div>
+			  </div>
+		</div>
+	</div>
 </div>

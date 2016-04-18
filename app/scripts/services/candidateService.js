@@ -3,8 +3,11 @@
 function candidateService($http, ajaxService) {
   var output  = this,
       urls    = {
-        addProfile: 'http://delta.srinutech.com/api/candidate',
-        getCandidates: 'http://delta.srinutech.com/api/candidate',
+        addProfile: 'http://delta.net/api/candidate',
+        getCandidates: 'http://delta.net/api/candidate',
+        uploadFile: 'https://delta.net/api/candidate',
+        addSkills: 'https://delta.net/api/candidate',
+        search: 'https://delta.net/api/candidate/search'
       };
 
   output.fnGetData = function (oData) {
@@ -17,7 +20,7 @@ function candidateService($http, ajaxService) {
 
   output.fnAddProfile = function (oData) {
     return ajaxService.fnPostData({
-      url:urls.login,
+      url:urls.addProfile,
       data:oData}).then(function(response){
       return response;
     }, function(error){
@@ -31,6 +34,37 @@ function candidateService($http, ajaxService) {
       data:{}
     }).then(function(response){
       return response.data;
+    }, function(error){
+      return error;
+    });
+  }
+
+  output.fnUploadResumeByFile = function (oData) {
+    return ajaxService.fnPostData({
+      url:urls.uploadFile+'/'+oData.id+'/uploadResume',
+      data:oData}).then(function(response){
+      return response;
+    }, function(error){
+      return error;
+    });
+  }
+
+  output.fnAddSkills = function (oData) {
+    return ajaxService.fnPostData({
+      url:urls.addSkills+'/'+oData.id+'/skills',
+      data:oData}).then(function(response){
+      return response;
+    }, function(error){
+      return error;
+    });
+  }
+
+  output.searchBySkills = function (oData) {
+    debugger;
+    return ajaxService.fnGetData({
+      url:urls.search,
+      data:oData}).then(function(response){
+      return response;
     }, function(error){
       return error;
     });

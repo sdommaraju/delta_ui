@@ -1,6 +1,6 @@
 'use strict';
 
-function candidateUploadCtrl($scope, $location, $modal) {
+function candidateUploadCtrl($scope, $location, $modal, candidateService) {
 
   $scope.assignOpening = function () {
 	$modal.open({
@@ -38,8 +38,22 @@ function candidateUploadCtrl($scope, $location, $modal) {
 	}); 
   }
 
+  $scope.skillsObj = {};
+  $scope.addMoreSkills = function () {
+  	$scope.skillsObj.id			=  5;
+  	$scope.skillsObj.skill 	= $scope.skill;
+	$scope.skillsObj.experience = 7;
+  	
+  	candidateService.fnAddSkills(
+		$scope.skillsObj).then(function(){
+			console.log("in candidateCtrl success:",arguments);
+		},function(){
+			console.log("in candidateCtrl success:",arguments);
+		});
+  }
+
 }
 
 angular
   .module('urbanApp')
-  .controller('candidateUploadCtrl', ['$scope','$location','$modal', candidateUploadCtrl]);
+  .controller('candidateUploadCtrl', ['$scope','$location','$modal', 'candidateService', candidateUploadCtrl]);
