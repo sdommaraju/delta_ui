@@ -47,15 +47,25 @@
 		<div class="panel mb25 col-lg-6 col-sm-12" style="background: transparent;">
 			  <div class="panel-body" style="margin:0px 5px;background: #fff;">
 			    <div class="row no-margin">
-			      <div class="col-lg-12">
+			      <div class="col-lg-14">
 			        <form class="form-horizontal" role="form">
-			          <label>Skills</label>		
+			          <label>Skills and Experience(yrs)</label>
+			          <div clas="row">
+			          	<div class="col-lg-12" ng-repeat="skill in skills">
+		          			<span>
+				              {{ skill.skill }}  -  {{ skill.experience }} yrs 
+				            </span>
+			          	</div>
+			          </div>	
           			  <div clas="row">
-	          			  <div class="col-lg-8">
+	          			  <div class="col-lg-4">
 							<input type="text" ng-model="skill" class="form-control" id="emailfield" name="emailfield">
 	          	          </div> 
-	          	          <div class="col-lg-4">
-	          	          	 <button class="btn btn-primary btn-xs pull-right" data-ng-click="addMoreSkills()">Add More Skills</button>
+	          	          <div class="col-lg-2" style="margin-left:-10px;">
+			                  <input type="text" ng-model="exp" class="form-control"/>
+			                </div>
+	          	          <div class="col-lg-2">
+	          	          	 <button class="btn btn-primary btn-xs pull-right" data-ng-click="addMoreSkills()">Add Skill</button>
 	          	          </div> 
           			  </div>
 			          	   

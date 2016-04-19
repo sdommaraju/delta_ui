@@ -8,6 +8,7 @@ function candidateService($http, ajaxService) {
         uploadFile: 'http://delta.srinutech.com/api/candidate',
         addSkills: 'http://delta.srinutech.com/api/candidate',
         search: 'http://delta.srinutech.com/api/candidate/search'
+
       };
 
   output.fnGetData = function (oData) {
@@ -59,7 +60,15 @@ function candidateService($http, ajaxService) {
       return error;
     });
   }
-
+  output.fnFetchAllSkills = function(oData) {
+    return ajaxService.fnGetData({
+      url:urls.addSkills+'/'+oData.id+'/skills',
+      data : oData}).then(function(response){
+      return response.data;
+    }, function(error){
+      return error;
+    });
+  }
   output.searchBySkills = function (oData) {
     return ajaxService.fnGetData({
       url:urls.search,
