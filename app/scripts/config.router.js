@@ -53,6 +53,20 @@ angular
           }
         })
 
+      .state('user.logout', {
+          url: '/logout',
+          templateUrl: 'views/logout.html',
+          resolve: {
+            deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+              return $ocLazyLoad.load('scripts/controllers/logout.js');
+                    }]
+          },
+          data: {
+            appClasses: 'bg-white usersession',
+            contentClasses: 'full-height'
+          }
+        })
+
       .state('app.dashboard', {
         url: '/',
         templateUrl: 'views/dashboard.html',

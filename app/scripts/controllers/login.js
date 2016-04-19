@@ -10,6 +10,7 @@ function loginCtrl($scope, $state, $rootScope, AUTH_EVENTS, AuthService) {
     AuthService.login(credentials).then(function (user) {
       $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
       $scope.setCurrentUser(user);
+      $scope.user = user;
       $state.go('app.dashboard');
     }, function () {
       $rootScope.$broadcast(AUTH_EVENTS.loginFailed);

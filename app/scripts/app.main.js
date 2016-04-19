@@ -2,15 +2,13 @@
 
 angular
   .module('urbanApp')
-  .controller('AppCtrl', ['$scope', '$http', '$localStorage','USER_ROLES','AuthService',
-        function AppCtrl($scope, $http, $localStorage,USER_ROLES,AuthService) {
+  .controller('AppCtrl', ['$scope', '$http', '$localStorage','USER_ROLES','AuthService','Session',
+        function AppCtrl($scope, $http, $localStorage,USER_ROLES,AuthService,Session) {
 
       $scope.mobileView = 767;
-
       $scope.currentUser = null;
       $scope.userRoles = USER_ROLES;
       $scope.isAuthorized = AuthService.isAuthorized;
-     
       $scope.setCurrentUser = function (user) {
         $scope.currentUser = user;
       };
@@ -44,7 +42,8 @@ angular
         jobDesc: 'Human Resources Guy',
         avatar: 'images/avatar.jpg',
       };
-
+      debugger;
+      $scope.user = Session.getUserData();
       if (angular.isDefined($localStorage.layout)) {
         $scope.app.layout = $localStorage.layout;
       } else {

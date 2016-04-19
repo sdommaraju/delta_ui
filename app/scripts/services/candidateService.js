@@ -5,9 +5,9 @@ function candidateService($http, ajaxService) {
       urls    = {
         addProfile: 'http://delta.net/api/candidate',
         getCandidates: 'http://delta.net/api/candidate',
-        uploadFile: 'https://delta.net/api/candidate',
-        addSkills: 'https://delta.net/api/candidate',
-        search: 'https://delta.net/api/candidate/search'
+        uploadFile: 'http://delta.net/api/candidate',
+        addSkills: 'http://delta.net/api/candidate',
+        search: 'http://delta.net/api/candidate/search'
       };
 
   output.fnGetData = function (oData) {

@@ -18,7 +18,7 @@ function ajaxService($http,Session) {
 
   output.fnGetData = function (oData) {
     //angular.extend(oData.data, config);
-
+    output.access_token = Session.getUserData().token;
     if(output.access_token){
       oData.data.access_token = output.access_token;
     }

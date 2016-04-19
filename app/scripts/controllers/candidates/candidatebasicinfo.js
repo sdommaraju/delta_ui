@@ -59,8 +59,9 @@ function candidateBasicInfoCtrl($scope, $state, $location, candidateService, $ro
 	    oSkills.skills = JSON.stringify(skillsArr);
 
 	    candidateService.searchBySkills(
-	   oSkills).then(function(){
+	   oSkills).then(function(response){
 	    console.log("in candidateCtrl success:",arguments);
+	    $scope.candidates = response.data.data;
 	    $scope.requestType = 'search-results';
 	   },function(){
 	    console.log("in candidateCtrl success:",arguments);

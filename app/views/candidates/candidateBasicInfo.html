@@ -143,6 +143,69 @@
       </div>
     </div>
   </div>    
-
+<div class="panel-body" ng-show="requestType === 'search-results'">
+      <table class="table table-bordered table-hover table-condensed align-middle">
+        <tr class="bold">
+          <td style="width:15%">Name</td>
+          <td style="width:15%">PHONE</td>
+          <td style="width:25%">EMAIL</td>
+          <td style="width:15%">SALARY</td>
+          <td style="width:15%">EXPERIENCE YRS</td>
+          <td style="width:15%">CREATED ON</td>
+        </tr>
+        <tr ng-repeat="candidate in candidates">
+          <td>
+            <!-- editable username (text with validation) -->
+            <span editable-text="user.name" e-name="name" e-form="rowform" e-required>
+              {{ candidate.first_name +' '+ candidate.last_name || 'empty' }}
+            </span>
+          </td>
+          <td>
+            <!-- editable status (select-local) -->
+            <span editable-text="user.phone" e-name="phone" e-form="rowform">
+              {{ candidate.phone_number }}
+            </span>
+          </td>
+          <td>
+            <!-- editable group (select-remote) -->
+            <span editable-text="user.email" e-name="email" e-form="rowform">
+              {{ candidate.email }}
+            </span>
+          </td>
+          <td>
+            <!-- editable group (select-remote) -->
+            <span editable-text="user.salary" e-name="salary" e-form="rowform">
+              {{ candidate.salary }}
+            </span>
+          </td>
+          <td>
+            <!-- editable group (select-remote) -->
+            <span editable-text="user.experience" e-name="experience" e-form="rowform">
+              {{ candidate.experience }}
+            </span>
+          </td>
+          <td>
+            <!-- editable group (select-remote) -->
+            <span editable-text="user.createdOn" e-name="createdOn" e-form="rowform">
+              {{ candidate.created_by }}
+            </span>
+          </td>
+          <td style="white-space: nowrap">
+            <!-- form -->
+            <form editable-form name="rowform" onbeforesave="saveUser($data, user.id)" ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == user">
+              <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-primary btn-xs">
+                save
+              </button>
+              <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()" class="btn btn-default btn-xs">
+                cancel
+              </button>
+            </form>
+            <div class="buttons" ng-show="!rowform.$visible">
+              <button class="btn btn-primary btn-xs" ng-click="rowform.$show()">edit</button>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
 </div>
 

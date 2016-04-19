@@ -97,7 +97,7 @@
     <a href="javascript:;" class="dropdown-toggle" dropdown-toggle>
       <img data-ng-src="{{user.avatar}}" class="header-avatar img-circle ml10" alt="user" title="user">
       <span class="pull-left">
-        {{user.fname}} {{user.lname}}
+        {{user.first_name}} {{user.last_name}}
       </span>
     </a>
     <ul class="dropdown-menu">
@@ -117,7 +117,7 @@
         <a href="javascript:;">Help</a>
       </li>
       <li>
-        <a ui-sref="user.signin">Logout</a>
+        <a ui-sref="user.logout">Logout</a>
       </li>
     </ul>
 
