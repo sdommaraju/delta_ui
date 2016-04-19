@@ -42,7 +42,6 @@ angular
         jobDesc: 'Human Resources Guy',
         avatar: 'images/avatar.jpg',
       };
-      debugger;
       $scope.user = Session.getUserData();
       if (angular.isDefined($localStorage.layout)) {
         $scope.app.layout = $localStorage.layout;

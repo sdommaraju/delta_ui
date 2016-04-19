@@ -28,6 +28,7 @@ function candidateBasicInfoCtrl($scope, $state, $location, candidateService, $ro
   	$scope.createProfile = function () {
 		candidateService.fnAddProfile(
 			$scope.profileObj).then(function(response){
+				debugger;
 				//$rootScope.profileData = 
 				//$location.path('/candidateuploaddata');
 				$state.go('app.candidateuploaddata',{"candidateId": response.data.id});
@@ -53,10 +54,8 @@ function candidateBasicInfoCtrl($scope, $state, $location, candidateService, $ro
   		var oSkills = {},
 	     skillsArr = [];
 
-	    var skill1 = {};
-	    skill1[$scope.search.keyword] = $scope.search.years;
-	    skillsArr.push(skill1);
-	    oSkills.skills = JSON.stringify(skillsArr);
+	    skillsArr.push({"skill":$scope.search.keyword, "experience":$scope.search.years});
+		oSkills.skills = JSON.stringify(skillsArr);
 
 	    candidateService.searchBySkills(
 	   oSkills).then(function(response){

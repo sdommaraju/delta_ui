@@ -6,8 +6,8 @@ angular
   var sessionData = {};
   var output  = {},
       urls    = {
-        login: 'http://delta.net/api/access_token',
-        profile: 'http://delta.net/api/user/profile',
+        login: 'http://delta.srinutech.com/api/access_token',
+        profile: 'http://delta.srinutech.com/api/user/profile',
         //login: 'http://localhost:9001/views/auth.json'
       };
 

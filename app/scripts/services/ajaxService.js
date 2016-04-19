@@ -24,6 +24,7 @@ function ajaxService($http,Session) {
     }
 
     $http.defaults.headers.common.Accept = "application/vnd.delta.v1+json";
+    $http.defaults.headers.common.Authorization = "Bearer "+oData.data.access_token;
     
     return $http.get(
       oData.url+"?access_token="+oData.data.access_token,{
@@ -41,7 +42,26 @@ function ajaxService($http,Session) {
         oData.data.access_token = output.access_token;
       }
       $http.defaults.headers.common.Accept = "application/vnd.delta.v1+json";
+      $http.defaults.headers.common.Authorization = "Bearer "+oData.data.access_token;
       return $http.post(oData.url, oData.data).then(function(response){
+        return response;
+      }, function(error){
+        return error;
+      });
+  }
+
+  output.fnPostDataFile = function (oData) {
+    debugger;
+      angular.extend(oData.data, config);
+      if(output.access_token){
+        oData.data.access_token = output.access_token;
+      }
+      $http.defaults.headers.common.Accept = "application/vnd.delta.v1+json";
+      $http.defaults.headers.common.Authorization = "Bearer "+oData.data.access_token;
+      return $http.post(oData.url, oData.data, {
+                  transformRequest: angular.identity,
+                  headers: {'Content-Type': undefined}
+               }).then(function(response){
         return response;
       }, function(error){
         return error;
@@ -55,6 +75,8 @@ function ajaxService($http,Session) {
         oData.data.access_token = output.access_token;
       }
       $http.defaults.headers.common.Accept = "application/vnd.delta.v1+json";
+      $http.defaults.headers.common.Authorization = "Bearer "+oData.data.access_token;
+
       return $http.put(oData.url, oData.data).then(function(response){
         return response;
       }, function(error){

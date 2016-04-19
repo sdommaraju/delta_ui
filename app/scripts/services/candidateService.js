@@ -3,11 +3,11 @@
 function candidateService($http, ajaxService) {
   var output  = this,
       urls    = {
-        addProfile: 'http://delta.net/api/candidate',
-        getCandidates: 'http://delta.net/api/candidate',
-        uploadFile: 'http://delta.net/api/candidate',
-        addSkills: 'http://delta.net/api/candidate',
-        search: 'http://delta.net/api/candidate/search'
+        addProfile: 'http://delta.srinutech.com/api/candidate',
+        getCandidates: 'http://delta.srinutech.com/api/candidate',
+        uploadFile: 'http://delta.srinutech.com/api/candidate',
+        addSkills: 'http://delta.srinutech.com/api/candidate',
+        search: 'http://delta.srinutech.com/api/candidate/search'
       };
 
   output.fnGetData = function (oData) {
@@ -22,7 +22,7 @@ function candidateService($http, ajaxService) {
     return ajaxService.fnPostData({
       url:urls.addProfile,
       data:oData}).then(function(response){
-      return response;
+      return response.data;
     }, function(error){
       return error;
     });
@@ -39,10 +39,11 @@ function candidateService($http, ajaxService) {
     });
   }
 
-  output.fnUploadResumeByFile = function (oData) {
-    return ajaxService.fnPostData({
+  output.fnUploadResumeByFile = function (oData,resume) {
+    debugger;
+    return ajaxService.fnPostDataFile({
       url:urls.uploadFile+'/'+oData.id+'/uploadResume',
-      data:oData}).then(function(response){
+      data:resume}).then(function(response){
       return response;
     }, function(error){
       return error;
