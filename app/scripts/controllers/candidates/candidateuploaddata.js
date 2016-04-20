@@ -3,7 +3,7 @@
 function candidateUploadCtrl($scope, $location, $modal, candidateService) {
 
 	$scope.candidateId = $scope.$stateParams.candidateId;
-
+	$scope.skills = {};
 
   $scope.assignOpening = function () {
 	$modal.open({
@@ -34,9 +34,10 @@ function candidateUploadCtrl($scope, $location, $modal, candidateService) {
 	        model: function() {
 	                return {
 	                    title: "Upload a Document",
+	                    candidateId:$scope.candidateId,
 	                    buttons: [{result: true, label: 'Upload', cssClass: 'btn-primary'}]
 	                };
-	            }
+	        }
 	    }
 	}); 
   }
@@ -48,22 +49,22 @@ function candidateUploadCtrl($scope, $location, $modal, candidateService) {
 	$scope.skillsObj.experience = $scope.exp;
   	
   	candidateService.fnAddSkills(
-		$scope.skillsObj).then(function(){
+		$scope.skillsObj).then(function(response){
 			$scope.skill = null;
 			$scope.exp = null;
-			$scope.init();
+			//$scope.init();
+			$scope.skills.push(response.data);
 			console.log("in candidateCtrl success:",arguments);
 		},function(){
 			console.log("in candidateCtrl success:",arguments);
 		});
   }
   $scope.init = function () {
-  	$scope.skills = {};
+  	
   	var skillsData = {};
   	skillsData.id = $scope.candidateId;
   	candidateService.fnFetchAllSkills(
 		skillsData).then(function(response){
-			debugger;
 			$scope.skills = response.data;
 		},function(){
 			console.log("in candidateCtrl success:",arguments);

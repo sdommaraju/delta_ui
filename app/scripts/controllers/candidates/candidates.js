@@ -13,7 +13,9 @@ function candidatesCtrl($scope, $state, $location, authService, candidateService
   $scope.skillSearch = function () {
     $state.go('app.candidateadd',{"page": 'search'});
   }
-
+  $scope.editCandidate = function(candidateId) {
+    $state.go('app.candidateuploaddata',{"candidateId": candidateId});
+  }
   $scope.init = function () {
    candidateService.fnGetCandidates({}).then(function(data){
         $scope.candidates = data.data;

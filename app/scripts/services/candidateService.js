@@ -55,7 +55,7 @@ function candidateService($http, ajaxService) {
     return ajaxService.fnPostData({
       url:urls.addSkills+'/'+oData.id+'/skills',
       data:oData}).then(function(response){
-      return response;
+      return response.data;
     }, function(error){
       return error;
     });
