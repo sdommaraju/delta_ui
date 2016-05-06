@@ -1,0 +1,65 @@
+<div data-ng-controller="openingsCtrl">
+  <div class="panel">
+    <div class="panel-heading">
+      Openings
+      <button class="btn btn-primary btn-xs pull-right" data-ng-click="createOpening()">Create a new Opening</button>
+    <div class="panel-body">
+      <table class="table table-bordered table-hover table-condensed align-middle">
+        <tr class="bold">
+          <td style="width:15%">TITLE</td>
+          <td style="width:15%">POSITION TYPE</td>
+          <td style="width:25%">COMPANY</td>
+          <td style="width:15%">CONTACT</td>
+          <td style="width:15%">OPENINGS</td>
+          <td style="width:15%">SUBMITTED</td>
+          <td style="width:15%">STATUS</td>
+        </tr>
+        <tr ng-repeat="job in openings">
+          <td>
+            <!-- editable username (text with validation) -->
+            <span editable-text="user.name" e-name="name" e-form="rowform" e-required>
+              {{ job.title }}
+            </span>
+          </td>
+          <td>
+            <!-- editable status (select-local) -->
+            <span editable-text="user.phone" e-name="phone" e-form="rowform">
+              {{ job.position_type }}
+            </span>
+          </td>
+          <td>
+            <!-- editable group (select-remote) -->
+            <span editable-text="user.email" e-name="email" e-form="rowform">
+              {{ job.company.name }}
+            </span>
+          </td>
+          <td>
+            <!-- editable group (select-remote) -->
+            <span editable-text="user.salary" e-name="salary" e-form="rowform">
+              {{ job.company.contact_name }}
+            </span>
+          </td>
+          <td>
+            <!-- editable group (select-remote) -->
+            <span editable-text="user.experience" e-name="experience" e-form="rowform">
+              {{ job.openings_available }}
+            </span>
+          </td>
+          <td>
+            <!-- editable group (select-remote) -->
+            <span editable-text="user.createdOn" e-name="createdOn" e-form="rowform">
+              {{ job.max_allowed_submissions }}
+            </span>
+          </td>
+          <td>
+            <!-- editable group (select-remote) -->
+            <span editable-text="user.createdOn" e-name="createdOn" e-form="rowform">
+              Open
+            </span>
+          </td>
+          
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

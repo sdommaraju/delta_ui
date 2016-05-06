@@ -53,34 +53,7 @@ function registerCompanyCtrl($scope, $state, $location, companyService) {
 	  });
   	$scope.action = 'account';
   }
-  $scope.wizardOpt = {
-    tabClass: '',
-    'nextSelector': '.button-next',
-    'previousSelector': '.button-previous',
-    'firstSelector': '.button-first',
-    'lastSelector': '.button-last',
-    onNext: function () {
-     var $valid = angular.element('#agencyForm').valid(),
-        $validator;
-      if (!$valid) {
-        $validator.focusInvalid();
-        return false;
-      }
-
-      if($scope.action=='account'){
-      	$scope.registerAgency($scope.agency);
-      	angular.element('#next-button').html('Finish');
-      } else {
-      	$scope.updateAgency($scope.agency);
-      	angular.element('#next-button').html('Success');
-      }
-      
-
-    },
-    onTabClick: function () {
-      return false;
-    }
-  };
+  
 
 }
 

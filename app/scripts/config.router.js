@@ -231,10 +231,43 @@ angular
 
 
       .state('app.openings', {
-        templateUrl: 'views/candidates/candidateBasicInfo.html',
+        templateUrl: 'views/openings/openings.html',
+        resolve: {
+            deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+              return $ocLazyLoad.load('scripts/controllers/openings/openings.js')
+              }]
+          },
+          data: {
+            title: 'Openings',
+          },
           url: '/openings',
       })
-      
+      .state('app.create-opening', {
+        templateUrl: 'views/openings/create-opening.html',
+        url: '/create-opening',
+        resolve: {
+            deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+              return $ocLazyLoad.load([
+                {
+                  insertBefore: '#load_styles_before',
+                  files: [
+                            ]
+                        },
+                {
+                  files: [
+                                'vendor/bootstrap/js/tab.js',
+                                'vendor/jquery-validation/dist/jquery.validate.min.js',
+                                'vendor/twitter-bootstrap-wizard/jquery.bootstrap.wizard.min.js'
+                            ]
+                        }]).then(function () {
+                return $ocLazyLoad.load('scripts/controllers/openings/create-opening.js');
+              });
+                    }]
+          },
+        data: {
+            title: 'Create new Opening',
+          }
+      })
       .state('app.candidates', {
         templateUrl: 'views/candidates/candidates.html',
         resolve: {
