@@ -168,6 +168,68 @@ angular
           }
       })
 
+      .state('app.companies', {
+        templateUrl: 'views/companies/companies.html',
+        resolve: {
+            deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+              return $ocLazyLoad.load('scripts/controllers/companies/companies.js')
+              }]
+          },
+          data: {
+            title: 'Companies',
+          },
+          url: '/companies',
+      })
+
+      .state('app.register-company', {
+        templateUrl: 'views/companies/create-company.html',
+        url: '/register-company',
+        resolve: {
+            deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+              return $ocLazyLoad.load([
+                {
+                  insertBefore: '#load_styles_before',
+                  files: [
+                            ]
+                        },
+                {
+                  files: [
+                                'vendor/bootstrap/js/tab.js',
+                                'vendor/jquery-validation/dist/jquery.validate.min.js',
+                                'vendor/twitter-bootstrap-wizard/jquery.bootstrap.wizard.min.js'
+                            ]
+                        }]).then(function () {
+                return $ocLazyLoad.load('scripts/controllers/companies/registercompany.js');
+              });
+                    }]
+          },
+        data: {
+            title: 'Register new Company',
+          }
+      })
+
+      .state('app.edit-company', {
+        templateUrl: 'views/companies/edit-company.html',
+        url: '/edit-company/:id',
+        resolve: {
+            deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                    return $ocLazyLoad.load([
+                     
+                      {
+                        files: [
+                                      'vendor/jquery-validation/dist/jquery.validate.min.js',
+                                  ]
+                              }]).then(function () {
+                      return $ocLazyLoad.load('scripts/controllers/companies/editcompany.js');
+                    });
+                    }]
+          },
+        data: {
+            title: 'Update Company',
+          }
+      })
+
+
       .state('app.openings', {
         templateUrl: 'views/candidates/candidateBasicInfo.html',
           url: '/openings',

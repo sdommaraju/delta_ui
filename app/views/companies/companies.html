@@ -1,0 +1,50 @@
+<div data-ng-controller="companiesCtrl">
+  <div class="panel">
+    <div class="panel-heading">
+      Companies
+      <button class="btn btn-primary btn-xs pull-right" data-ng-click="registerNewCompany()">Register new Company</button>
+    </div>
+    <div class="panel-body">
+      <table class="table table-bordered table-hover table-condensed align-middle">
+        <tr class="bold">
+          <td style="width:25%">Company Name</td>
+          <td style="width:25%">Address</td>
+          <td style="width:25%">Contact Name</td>
+          <td style="width:25%">Contact Email</td>
+          <td style="width:10%"></td>
+        </tr>
+        <tr ng-repeat="company in companies">
+          <td>
+            <!-- editable username (text with validation) -->
+            <span editable-text="user.name" e-name="name" e-form="rowform" e-required>
+              {{ company.name }}
+            </span>
+          </td>
+          <td>
+            <!-- editable username (text with validation) -->
+            <span editable-text="user.name" e-name="name" e-form="rowform" e-required>
+              {{ company.city +','+ company.state }}
+            </span>
+          </td>
+          <td>
+            <!-- editable status (select-local) -->
+            <span editable-text="user.phone" e-name="phone" e-form="rowform">
+              {{ company.contact_name }}
+            </span>
+          </td>
+          <td>
+            <!-- editable group (select-remote) -->
+            <span editable-text="user.email" e-name="email" e-form="rowform">
+              {{ company.contact_email }}
+            </span>
+          </td>
+          
+          <td style="white-space: nowrap">
+            <button class="btn btn-primary btn-xs" ng-click="editCompany({{ company.id }})">Edit</button>
+            <button class="btn btn-danger btn-xs" ng-click="deleteCompany({{ company.id }})">Delete</button>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
