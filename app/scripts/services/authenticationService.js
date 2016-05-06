@@ -16,11 +16,10 @@ angular
         url:urls.login,
         data:credentials
       }).then(function(response){
-        debugger;
         sessionData.token = response.data.access_token;
         Session.setUserData(sessionData);
         
-        ajaxService.fnGetData({
+        return ajaxService.fnGetData({
           url:urls.profile,
           data:sessionData
         }).then(function(response){
@@ -42,7 +41,10 @@ angular
  
   authService.isAuthenticated = function () {
     var loginData = Session.getUserData();
-    return !!loginData.token;
+    if(loginData)
+      return !!loginData.token;
+    else
+      return false;
   };
  
   authService.isAuthorized = function (authorizedRoles) {

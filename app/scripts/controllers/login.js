@@ -11,7 +11,15 @@ function loginCtrl($scope, $state, $rootScope, AUTH_EVENTS, AuthService) {
       $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
       $scope.setCurrentUser(user);
       $scope.user = user;
-      $state.go('app.dashboard');
+
+      if($scope.user.role_id==1){
+        $state.go('app.agencies');
+      } else if($scope.user.role_id) {
+        $state.go('app.dashboard');  
+      } else {
+        $state.go('user.login'); 
+      }
+      
     }, function () {
       $rootScope.$broadcast(AUTH_EVENTS.loginFailed);
     });
