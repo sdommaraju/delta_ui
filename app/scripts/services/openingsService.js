@@ -5,6 +5,7 @@ function openingsService($http, ajaxService) {
       urls    = {
         addOpening: 'http://delta.srinutech.com/api/jobs',
         getOpenings: 'http://delta.srinutech.com/api/jobs',
+        getCompanies: 'http://delta.srinutech.com/api/companies',
 
       };
 
@@ -36,7 +37,16 @@ function openingsService($http, ajaxService) {
       return error;
     });
   }
-
+  output.fnGetCompanies = function () {
+    return ajaxService.fnGetData({
+      url:urls.getCompanies,
+      data:{}
+    }).then(function(response){
+      return response.data;
+    }, function(error){
+      return error;
+    });
+  }
   output.fnUploadResumeByFile = function (oData,resume) {
     debugger;
     return ajaxService.fnPostDataFile({

@@ -257,7 +257,9 @@ angular
                   files: [
                                 'vendor/bootstrap/js/tab.js',
                                 'vendor/jquery-validation/dist/jquery.validate.min.js',
-                                'vendor/twitter-bootstrap-wizard/jquery.bootstrap.wizard.min.js'
+                                'vendor/twitter-bootstrap-wizard/jquery.bootstrap.wizard.min.js',
+                                'vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.js',
+                                'vendor/bootstrap-datepicker/dist/css/bootstrap-datepicker3.css'
                             ]
                         }]).then(function () {
                 return $ocLazyLoad.load('scripts/controllers/openings/create-opening.js');

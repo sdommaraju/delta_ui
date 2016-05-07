@@ -1,85 +1,114 @@
 'use strict';
 
-function createOpeningCtrl($scope, $location, openingsService) {
+function createOpeningCtrl($scope, $state, $location, openingsService) {
 
 	$scope.opening = {};
 	$scope.openingDetails = {};
+	$scope.companyDetails = {};
+	$scope.company = {};
+	$scope.companies = {};
 	$scope.action = 'account';
-	/*$scope.validationOpt = {
+
+	$scope.validationOpt = {
 	    rules: {
-	      email: {
-	        required: true,
-	        email: true,
-	        minlength: 3
-	      },
-	      first_name: {
+	      title: {
 	        required: true,
 	        minlength: 3
 	      },
-	      last_name: {
+	      position_type: {
+	        required: true
+	      },
+	      description: {
 	        required: true,
 	        minlength: 1
 	      },
-	      password: {
-	        required: true,
-	        minlength: 6
+	      company_id: {
+	        required: true
 	      },
-	      confirm_password: {
-	        required: true,
-	        minlength: 6,
-	        equalTo: '#password'
+	      bill_rate: {
+	        required: true
 	      },
-	      name: {
-	        required: true,
-	        minlength: 3
+	      pay_rate: {
+	        required: true
+	      },
+	      start_date: {
+	        required: true
+	      },
+	      end_date: {
+	        required: true
+	      },
+	      openings_available: {
+	        required: true
+	      },
+	      max_allowed_submissions: {
+	        required: true
 	      }
 	    }
 	  };
-	*/
-  $scope.createOpening = function(opening){
-  	debugger;
-  	openingsService.fnAddOpening(opening).then(function(response){
-	    $scope.openingDetails = response.data.data;
-	  },function(){
-	    console.log("in candidateCtrl error:",arguments);
-	  });
-  }
-  $scope.updateAgency = function(agency){
-  	debugger;
-  	agenciesService.fnUpdateAgencyDetails($scope.agencyDetails.id,agency).then(function(response){
-	    $scope.agencyDetails = response.data.data;
-	  },function(){
-	    console.log("in candidateCtrl error:",arguments);
-	  });
-  	$scope.action = 'account';
-  }
-  $scope.wizardOpt = {
+	
+	$scope.init = function () {
+	   openingsService.fnGetCompanies({}).then(function(data){
+	        $scope.companies = data.data;
+	      },function(){
+	        console.log("in candidateCtrl error:",arguments);
+	      });
+	  }
 
-    tabClass: '',
-    'nextSelector': '.button-next',
-    'previousSelector': '.button-previous',
-    'firstSelector': '.button-first',
-    'lastSelector': '.button-last',
-    onNext: function (tab, navigation, index) {
+	$scope.init();
+	
+	$scope.changeCompany = function() {
+		var companyId = $scope.opening.company_id;
+		$scope.companyDetails = $scope.companies.filter(function(company){
+         return company.id==companyId;
+        });
+        $scope.company = $scope.companyDetails[0];
+	}
 
-     var $valid = angular.element('#openingForm').valid(),
-        $validator;
-      if (!$valid) {
-        $validator.focusInvalid();
-        return false;
-      }
-      if(index==4){
-      	$scope.createOpening($scope.opening);
-      }
+	$scope.createOpening = function(opening){
+	  	opening.agency_id=18;
+	  	openingsService.fnAddOpening(opening).then(function(response){
+		    $scope.openingDetails = response.data.data;
+		    $state.go('app.openings');
+		  },function(){
+		    console.log("in candidateCtrl error:",arguments);
+		  });
+	  }
+	  $scope.updateAgency = function(agency){
+	  	debugger;
+	  	agenciesService.fnUpdateAgencyDetails($scope.agencyDetails.id,agency).then(function(response){
+		    $scope.agencyDetails = response.data.data;
+		  },function(){
+		    console.log("in candidateCtrl error:",arguments);
+		  });
+	  	$scope.action = 'account';
+	  }
+	  $scope.wizardOpt = {
 
-    },
-    onTabClick: function () {
-      return false;
-    }
-  };
+	    tabClass: '',
+	    'nextSelector': '.button-next',
+	    'previousSelector': '.button-previous',
+	    'firstSelector': '.button-first',
+	    'lastSelector': '.button-last',
+	    onNext: function (tab, navigation, index) {
 
-}
+	     var $valid = angular.element('#openingForm').valid(),
+	        $validator;
+	      if (!$valid) {
+	        $validator.focusInvalid();
+	        return false;
+	      }
+	      if(index==3){
+	      	$scope.createOpening($scope.opening);
+	      }
+
+	    },
+	    onTabClick: function () {
+	      return false;
+	    }
+	  };
+
+	}
 
 angular
   .module('urbanApp')
-  .controller('createOpeningCtrl', ['$scope','$location','openingsService', createOpeningCtrl]);
+  .controller('createOpeningCtrl', ['$scope','$state','$location','openingsService', createOpeningCtrl]);
