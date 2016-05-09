@@ -34,9 +34,9 @@
         candidate.jobId = $scope.job.id;
         candidateService.fnAssignJobToCandidate(
         candidate).then(function(response){
-           $scope.allJobs = {};
-           $scope.allJobs =  response.data.data;
-           $rootScope.$emit("UpdateAssignedOpenings", $scope.allJobs);
+           $scope.updatedJob = {};
+           $scope.updatedJob =  response.data.data;
+           $rootScope.$emit("UpdateAssignedOpenings", $scope.updatedJob);
            $modalInstance.close(response.data);
         },function(){
           console.log("in candidateCtrl success:",arguments);
@@ -46,14 +46,15 @@
       $scope.changeStage = function () {
         var obj = {};
         obj.candidate_id = $scope.candidateId;
-        obj.job_id = $scope.selectedJob.id;
+        obj.job_id = $scope.selectedJob.job.id;
         obj.stage  = $scope.selectedStage;
 
         candidateService.fnChangeStage(
         obj).then(function(response){
-           $scope.allJobs = response.data.data;
+           $scope.updatedJob = {};
+           $scope.updatedJob = response.data.data;
            $state.go('app.candidateuploaddata',{"candidateId": $scope.candidateId});
-           $rootScope.$emit("UpdateAssignedOpenings", $scope.allJobs)
+           $rootScope.$emit("UpdateChangedStage", $scope.updatedJob)
            $modalInstance.close(response.data);
         },function(){
           console.log("in candidateCtrl success:",arguments);

@@ -94,6 +94,15 @@ function candidateUploadCtrl($scope, $location, $modal, candidateService, $rootS
   		$scope.candidateJobs.push(data);
   });
 
+  $rootScope.$on("UpdateChangedStage", function (evt, data) {
+  		for (var i=0;i<$scope.candidateJobs.length;i++) {
+  			if($scope.candidateJobs[i].id === data.id) { 
+  				$scope.candidateJobs[i].stage = data.stage;
+  				break;
+  			}
+  		}
+  });
+
   $scope.changeStage = function (selectedJob) {
   	$modal.open({
 	    backdrop: true,
