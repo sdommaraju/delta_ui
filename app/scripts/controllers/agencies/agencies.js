@@ -4,6 +4,9 @@ function agenciesCtrl($scope, $state, $location, AuthService, agenciesService) {
 
   $scope.agencies = {};
   $scope.agency = {};
+  // if($scope.user && $scope.user.role_id!=1){
+  //   $state.go('app.dashboard');
+  // }
 
   $scope.registerNewAgency = function () {
     $state.go('app.register-agency');

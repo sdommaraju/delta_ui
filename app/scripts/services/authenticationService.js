@@ -3,15 +3,11 @@ angular
   .module('urbanApp')
   .factory('AuthService', function ($http, Session, ajaxService) {
   var authService = {};
-  var userData = {
-    token:"",
-    userId:"",
-    roleId:"",
-    userName:""
-  };
+  var sessionData = {};
   var output  = {},
       urls    = {
-        login: 'http://delta.net/api/access_token'
+        login: 'http://delta.srinutech.com/api/access_token',
+        profile: 'http://delta.srinutech.com/api/user/profile',
         //login: 'http://localhost:9001/views/auth.json'
       };
 
@@ -20,10 +16,23 @@ angular
         url:urls.login,
         data:credentials
       }).then(function(response){
-        debugger;
-        userData.token = response.data.access_token;
-        Session.setUserData(userData);
-        return userData;
+        sessionData.token = response.data.access_token;
+        Session.setUserData(sessionData);
+        
+        return ajaxService.fnGetData({
+          url:urls.profile,
+          data:sessionData
+        }).then(function(response){
+          var token = sessionData.token;
+          sessionData = response.data.data;
+          sessionData.token = token;
+          Session.setUserData(sessionData);
+          return sessionData;
+        }, function(error){
+          return error;
+        });
+
+        return sessionData;
       }, function(error){
         return error;
       });
@@ -31,8 +40,11 @@ angular
   };
  
   authService.isAuthenticated = function () {
-    userData = Session.getUserData();
-    return !!userData.token;
+    var loginData = Session.getUserData();
+    if(loginData)
+      return !!loginData.token;
+    else
+      return false;
   };
  
   authService.isAuthorized = function (authorizedRoles) {

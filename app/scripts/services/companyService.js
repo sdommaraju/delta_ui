@@ -1,11 +1,11 @@
 'use strict';
 
-function agenciesService($http, ajaxService) {
+function companyService($http, ajaxService) {
   var output  = this,
       urls    = {
-        addAgency: 'http://delta.srinutech.com/api/agency',
-        updateAgency: 'http://delta.srinutech.com/api/agency',
-        getAgencies: 'http://delta.srinutech.com/api/agency',
+        addCompany: 'http://delta.srinutech.com/api/companies',
+        updateCompany: 'http://delta.srinutech.com/api/companies',
+        getCompanies: 'http://delta.srinutech.com/api/companies',
       };
 
   output.fnGetData = function (oData) {
@@ -16,27 +16,27 @@ function agenciesService($http, ajaxService) {
       });
   }
 
-  output.fnAddAgencyAccount = function (oData) {
+  output.fnAddCompany = function (oData) {
     return ajaxService.fnPostData({
-      url:urls.addAgency,
+      url:urls.addCompany,
       data:oData}).then(function(response){
       return response;
     }, function(error){
       return error;
     });
   }
-  output.fnUpdateAgencyDetails = function (agencyId,oData) {
+  output.fnUpdateCompany = function (companyId,oData) {
     return ajaxService.fnPutData({
-      url:urls.updateAgency+'/'+agencyId,
+      url:urls.updateCompany+'/'+companyId,
       data:oData}).then(function(response){
       return response;
     }, function(error){
       return error;
     });
   }
-  output.fnGetAgencies = function () {
+  output.fnGetCompanies = function () {
     return ajaxService.fnGetData({
-      url:urls.getAgencies,
+      url:urls.getCompanies,
       data:{}
     }).then(function(response){
       return response.data;
@@ -44,9 +44,9 @@ function agenciesService($http, ajaxService) {
       return error;
     });
   }
-  output.fnGetAgency = function(agencyId) {
+  output.fnGetCompany = function(companyId) {
     return ajaxService.fnGetData({
-      url:urls.getAgencies+'/'+agencyId,
+      url:urls.getCompanies+'/'+companyId,
       data:{}
     }).then(function(response){
       return response.data;
@@ -59,4 +59,4 @@ function agenciesService($http, ajaxService) {
 
 angular
   .module('urbanApp')
-  .service('agenciesService', ['$http','ajaxService', agenciesService]);
+  .service('companyService', ['$http','ajaxService', companyService]);

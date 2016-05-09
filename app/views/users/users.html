@@ -1,0 +1,44 @@
+<div data-ng-controller="usersCtrl">
+  <div class="panel">
+    <div class="panel-heading">
+      Users
+      <button class="btn btn-primary btn-xs pull-right" data-ng-click="createUser()">Create New User</button>
+    <div class="panel-body">
+      <table class="table table-bordered table-hover table-condensed align-middle">
+        <tr class="bold">
+          <td style="width:30%">NAME</td>
+          <td style="width:30%">EMAIL</td>
+          <td style="width:25%">ROLE</td>
+          <td style="width:15%"></td>
+        </tr>
+        <tr ng-repeat="user in users">
+          <td>
+            <!-- editable username (text with validation) -->
+            <span editable-text="user.name" e-name="name" e-form="rowform" e-required>
+              {{ user.first_name +' '+user.last_name }}
+            </span>
+          </td>
+          <td>
+            <!-- editable status (select-local) -->
+            <span editable-text="user.phone" e-name="phone" e-form="rowform">
+              {{ user.email }}
+            </span>
+          </td>
+          <td>
+            <!-- editable group (select-remote) -->
+            <span editable-text="user.email" e-name="email" e-form="rowform">
+              {{ user.role.name }}
+            </span>
+          </td>
+          
+          <td style="white-space: nowrap">
+            <button class="btn btn-primary btn-xs" ng-click="editAgency({{ agency.id }})">Edit</button>
+            <button class="btn btn-primary btn-xs" ng-click="editAgency({{ agency.id }})">Details</button>
+            <button class="btn btn-danger btn-xs" ng-click="deleteAgency({{ agency.id }})">Delete</button>
+          </td>
+          
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>

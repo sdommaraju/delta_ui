@@ -1,0 +1,55 @@
+<div class="panel mb25 row" data-ng-controller="registerCompanyCtrl">
+  <div class="panel-body">
+  <form id="companyForm" class="form-horizontal" role="form" ui-jq="validate" ui-options="validationOpt">
+    <div class="row no-margin">
+      <div class="col-lg-8">
+        <form class="form-horizontal" role="form">
+          
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Name</label>
+            <div class="col-sm-10">
+              <input type="text" ng-model="company.name" class="form-control" id="name" name="name">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">City</label>
+            <div class="col-sm-10">
+              <input type="text" ng-model="company.city" class="form-control" id="city" name="city">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">State</label>
+            <div class="col-sm-10">
+              <input type="text" ng-model="company.state" class="form-control" id="state" name="state">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Contact Name</label>
+            <div class="col-sm-10">
+              <input type="text" ng-model="company.contact_name" class="form-control" id="contact_name" name="contact_name">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">Contact Email</label>
+            <div class="col-sm-10">
+              <input type="text" ng-model="company.contact_email" class="form-control" id="contact_email" name="contact_email">
+            </div>
+          </div>
+          
+          <div class="wizard-pager">
+            <div class="pull-right">
+               <button class="btn btn-primary btn-xs" data-ng-click="createCompany(company)">Create</button>
+            </div>
+         </div>
+         <div class="form-group">
+            <a ui-sref="app.companies" class="btn btn-primary btn-xs">Back To List</a>
+            
+         </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+  </form>
+</div>
+</div>

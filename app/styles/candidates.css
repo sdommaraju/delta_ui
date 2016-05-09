@@ -11,3 +11,16 @@
 	margin-left:0 !important;
 	margin-bottom:0 !important;
 }
+
+.linkClick { 
+	cursor: pointer;
+	color: #0099cc;
+}
+
+.heading2 {
+	font-size: 22px;
+}
+
+.openingsDiv .control-label { 
+	text-align: left !important;
+}

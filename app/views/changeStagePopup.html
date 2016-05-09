@@ -1,0 +1,47 @@
+
+<div class="panel mb25">
+	<div class="col-xs-12 mb25">
+		<table class="table table-hover table-condensed align-middle">
+	        <tr>
+	          <td>
+	            <label>
+				    <input type="radio" ng-model="selectedStage" value="screening">
+				    Screening
+				  </label>
+	          </td>
+	        </tr>
+	        <tr>
+	          <td>
+			    <input type="radio" ng-model="selectedStage" value="face_to_face">
+			    Face to Face
+			  </label>
+	          </td>
+	        </tr>
+	        <tr>
+	          <td>
+			    <input type="radio" ng-model="selectedStage" value="job_offered">
+			    Job Offered
+			  </label>
+	          </td>
+	        </tr>
+	        <tr>
+	          <td>
+			    <input type="radio" ng-model="selectedStage" value="job_accepted">
+			    Job Accepted
+			  </label>
+	          </td>
+	        </tr>
+	        <tr>
+	          <td>
+			    <input type="radio" ng-model="selectedStage" value="job_rejected">
+			    Offer Rejected
+			  </label>
+	          </td>
+	        </tr>
+	      </table>
+    </div>
+</div>
+
+<div class="modal-footer">
+	<button ng-repeat="btn in buttons" ng-click="changeStage()" class="btn" ng-class="btn.cssClass">Change Stage</button>
+</div>

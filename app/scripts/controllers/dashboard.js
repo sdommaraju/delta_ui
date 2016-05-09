@@ -1,7 +1,10 @@
 'use strict';
 
-function dashboardCtrl($scope, $interval, COLORS) {
+function dashboardCtrl($scope, $state,$interval, COLORS) {
 
+  // if($scope.user && $scope.user.role_id==1){
+  //   $state.go('app.agencies');
+  // }
   var visits = [
         [0, 8],
         [1, 1],
@@ -205,4 +208,4 @@ function dashboardCtrl($scope, $interval, COLORS) {
 
 angular
   .module('urbanApp')
-  .controller('dashboardCtrl', ['$scope', '$interval', 'COLORS', dashboardCtrl]);
+  .controller('dashboardCtrl', ['$scope', '$state', '$interval', 'COLORS', dashboardCtrl]);

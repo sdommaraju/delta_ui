@@ -1,62 +1,63 @@
-<div data-ng-controller="candidatesCtrl">
+<div data-ng-controller="openingsCtrl">
   <div class="panel">
     <div class="panel-heading">
-      Candidates
-      <button class="btn btn-primary btn-xs pull-right" data-ng-click="createCandiate()">Create a new Candidate</button>
-      <button class="btn btn-primary btn-xs pull-right" data-ng-click="skillSearch()">Skill Search</button>
-    </div>
+      Openings
+      <button class="btn btn-primary btn-xs pull-right" data-ng-click="createOpening()">Create a new Opening</button>
     <div class="panel-body">
       <table class="table table-bordered table-hover table-condensed align-middle">
         <tr class="bold">
-          <td style="width:15%">Name</td>
-          <td style="width:15%">PHONE</td>
-          <td style="width:25%">EMAIL</td>
-          <td style="width:15%">SALARY</td>
-          <td style="width:15%">EXPERIENCE YRS</td>
-          <td style="width:15%">CREATED ON</td>
+          <td style="width:15%">TITLE</td>
+          <td style="width:15%">POSITION TYPE</td>
+          <td style="width:25%">COMPANY</td>
+          <td style="width:15%">CONTACT</td>
+          <td style="width:15%">OPENINGS</td>
+          <td style="width:15%">SUBMITTED</td>
+          <td style="width:15%">STATUS</td>
         </tr>
-        <tr ng-repeat="candidate in candidates">
+        <tr ng-repeat="job in openings">
           <td>
             <!-- editable username (text with validation) -->
-            <span editable-text="user.name" e-name="name" e-form="rowform" e-required class="linkClick" ng-click="editProfile({{candidate}})">
-              {{ candidate.first_name +' '+ candidate.last_name || 'empty' }}
+            <span editable-text="user.name" e-name="name" e-form="rowform" e-required>
+              {{ job.title }}
             </span>
           </td>
           <td>
             <!-- editable status (select-local) -->
             <span editable-text="user.phone" e-name="phone" e-form="rowform">
-              {{ candidate.phone_number }}
+              {{ job.position_type }}
             </span>
           </td>
           <td>
             <!-- editable group (select-remote) -->
             <span editable-text="user.email" e-name="email" e-form="rowform">
-              {{ candidate.email }}
+              {{ job.company.name }}
             </span>
           </td>
           <td>
             <!-- editable group (select-remote) -->
             <span editable-text="user.salary" e-name="salary" e-form="rowform">
-              {{ candidate.salary }}
+              {{ job.company.contact_name }}
             </span>
           </td>
           <td>
             <!-- editable group (select-remote) -->
             <span editable-text="user.experience" e-name="experience" e-form="rowform">
-              {{ candidate.experience }}
+              {{ job.openings_available }}
             </span>
           </td>
           <td>
             <!-- editable group (select-remote) -->
             <span editable-text="user.createdOn" e-name="createdOn" e-form="rowform">
-              {{ candidate.created_by }}
+              {{ job.max_allowed_submissions }}
             </span>
           </td>
-          <td style="white-space: nowrap">            
-            <div class="buttons" ng-show="!rowform.$visible">
-              <button class="btn btn-primary btn-xs" ng-click="editCandidate({{ candidate }})">edit</button>
-            </div>
+          <td>
+            <!-- editable group (select-remote) -->
+            <span editable-text="user.createdOn" e-name="createdOn" e-form="rowform">
+              Open
+            </span>
           </td>
+          
         </tr>
       </table>
     </div>

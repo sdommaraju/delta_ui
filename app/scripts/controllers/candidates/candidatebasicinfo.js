@@ -1,6 +1,6 @@
 'use strict';
 
-function candidateBasicInfoCtrl($scope, $location, candidateService, $rootScope, $routeParams) {
+function candidateBasicInfoCtrl($scope, $state, $location, candidateService, $rootScope, $routeParams) {
 
 	$scope.profileObj = {
 		"id": 4,
@@ -23,17 +23,29 @@ function candidateBasicInfoCtrl($scope, $location, candidateService, $rootScope,
 		"years": "",
 	    "recent": true
 	};
-	$scope.requestType = $scope.$stateParams.page;
+	
+	$scope.requestType = $scope.$stateParams.candidateData ? "create" :  $scope.$stateParams.page;
+	$scope.profileObj  = $scope.$stateParams.candidateData ? JSON.parse($scope.$stateParams.candidateData) : $scope.profileObj;
+	$scope.profileBtn  = $scope.$stateParams.candidateData ? "Edit Profile" : "Create Profile";
 
   	$scope.createProfile = function () {
-		candidateService.fnAddProfile(
-			$scope.profileObj).then(function(){
-				console.log("in candidateCtrl success:",arguments);
-				//$rootScope.profileData = 
-				$location.path('/candidateuploaddata');
+  		if($scope.profileBtn == "Create Profile"){
+  			candidateService.fnAddProfile(
+			$scope.profileObj).then(function(response){
+				$state.go('app.candidateuploaddata',{"candidateId": response.data.id});
 			},function(){
 				console.log("in candidateCtrl success:",arguments);
 			});
+  		}
+  		else{
+			candidateService.fnEditProfile(
+				$scope.profileObj).then(function(response){
+					$state.go('app.candidateuploaddata',{"candidateId": response.data.id});
+				},function(){
+					console.log("in candidateCtrl success:",arguments);
+				});
+  		}
+		
   	};
 
   	$scope.addSkill = function () {
@@ -54,13 +66,13 @@ function candidateBasicInfoCtrl($scope, $location, candidateService, $rootScope,
 	     skillsArr = [];
 
 	    skillsArr.push({"skill":$scope.search.keyword, "experience":$scope.search.years});
-	    oSkills.skills = JSON.stringify(skillsArr);
+		oSkills.skills = JSON.stringify(skillsArr);
 
 	    candidateService.searchBySkills(
-	   oSkills).then(function(){
+	   oSkills).then(function(response){
 	    console.log("in candidateCtrl success:",arguments);
-	    //$rootScope.profileData = 
-	    $location.path('/candidateuploaddata');
+	    $scope.candidates = response.data.data;
+	    $scope.requestType = 'search-results';
 	   },function(){
 	    console.log("in candidateCtrl success:",arguments);
 	   });
@@ -69,4 +81,4 @@ function candidateBasicInfoCtrl($scope, $location, candidateService, $rootScope,
 
 angular
   .module('urbanApp')
-  .controller('candidateBasicInfoCtrl', ['$scope','$location','candidateService', '$rootScope', '$routeParams', candidateBasicInfoCtrl]);
+  .controller('candidateBasicInfoCtrl', ['$scope','$state','$location','candidateService', '$rootScope', '$routeParams', candidateBasicInfoCtrl]);
