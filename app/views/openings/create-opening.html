@@ -1,0 +1,142 @@
+<div data-ng-controller="createOpeningCtrl" >
+  <form id="openingForm" class="form-horizontal" role="form" ui-jq="validate" ui-options="validationOpt">
+    <div class="box-tab justified" id="rootwizard" ui-jq="bootstrapWizard" ui-options="wizardOpt">
+      <ul class="nav nav-tabs">
+        <li><a href="#tab1" data-toggle="tab">BASIC</a>
+        </li>
+        <li><a href="#tab2" data-toggle="tab">CLIENT</a>
+        </li>
+        <li><a href="#tab3" data-toggle="tab">FINANCE</a>
+        </li>
+        <!-- <li><a href="#tab4" data-toggle="tab">ASSIGNED</a>
+        </li>
+        <li><a href="#tab5" data-toggle="tab">CREATED</a>
+        </li> -->
+        <li><a href="#tab4" data-toggle="tab">OPENING</a>
+        </li>
+      </ul>
+
+      <div class="tab-content">
+        <div class="tab-pane" id="tab1">
+              <div class="col-lg-12 pt10 pb30">
+                  <label class="col-sm-8 control-label"><h4>Let's start  with the basic information</h4></label>
+              </div>
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label class="col-sm-4 control-label">JOB TITLE</label>
+                  <div class="col-sm-6">
+                    <input type="text" class="form-control" ng-model="opening.title" id="title" name="title">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-4 control-label">POSITION TYPE</label>
+                  <div class="col-sm-6">
+                    <select class="form-control" ng-model="opening.position_type" id="position_type" name="position_type">
+                      <option value="">Select Position Type</option>
+                      <option value="contract">Contract</option>
+                      <option value="full">Full Time</option>
+                    </select>
+                  </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="form-group">
+                  <label class="col-sm-4 control-label">JOB DESCRIPTION</label>
+                  <div class="col-sm-6">
+                    <textarea class="form-control" rows="5" ng-model="opening.description" id="description" name="description"></textarea>
+                  </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane" id="tab2">
+          <div class="col-lg-12 pt10 pb30">
+                  <label class="col-sm-8 control-label"><h4>Who is the Company/Client ?</h4></label>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">COMPANY</label>
+            <div class="col-sm-8">
+              <select class="form-control" ng-model="opening.company_id" id="company_id" name="company_id" ng-change="changeCompany(this.value)">
+                <option value="">Select Company</option>
+                <option value="{{company.id}}" ng-repeat="company in companies">{{ company.name }}</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">CONTACT</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" ng-model="company.contact_name" id="contact_name" name="contact_name">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">CITY</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" ng-model="company.city" id="contact_name" name="city">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">STATE</label>
+            <div class="col-sm-8">
+              <input type="text" class="form-control" ng-model="company.state" id="contact_name" name="state">
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-pane" id="tab3">
+              <div class="col-lg-12 pt10 pb30">
+                  <label class="col-sm-8 control-label"><h4>How much does it pay?</h4></label>
+              </div>
+              <div class="col-lg-6">
+                <div class="form-group">
+                  <label class="col-sm-4 control-label">BILL RATE</label>
+                  <div class="col-sm-6">
+                    <input type="text" class="form-control" ng-model="opening.bill_rate" id="bill_rate" name="bill_rate">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-4 control-label">START DATE</label>
+                  <div class="col-sm-6">
+                    <input type="text" class="form-control" ng-model="opening.start_date" id="start_date" name="start_date" ui-jq="datepicker">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-4 control-label"># OF OPENINGS</label>
+                  <div class="col-sm-6">
+                    <input type="text" class="form-control" ng-model="opening.openings_available" id="openings_available" name="openings_available">
+                  </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="form-group">
+                  <label class="col-sm-4 control-label">PAY RATE</label>
+                  <div class="col-sm-6">
+                    <input type="text" class="form-control" ng-model="opening.pay_rate" id="pay_rate" name="pay_rate">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-4 control-label">END DATE</label>
+                  <div class="col-sm-6">
+                    <input type="text" class="form-control" ng-model="opening.end_date" id="end_date" name="end_date" ui-jq="datepicker">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-4 control-label">MAX ALLOWED SUBMITTALS</label>
+                  <div class="col-sm-6">
+                    <input type="text" class="form-control" ng-model="opening.max_allowed_submissions" id="max_allowed_submissions" name="max_allowed_submissions">
+                  </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-pane" id="tab4">Congradulations your account has been created</div>
+        <div class="wizard-pager">
+          <div class="pull-left">
+            <button type="button" class="btn btn-default button-previous">Previous</button>
+          </div>
+          <div class="pull-right">
+            <button type="button" class="btn btn-primary button-next">Next</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

@@ -168,11 +168,148 @@ angular
           }
       })
 
+      .state('app.companies', {
+        templateUrl: 'views/companies/companies.html',
+        resolve: {
+            deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+              return $ocLazyLoad.load('scripts/controllers/companies/companies.js')
+              }]
+          },
+          data: {
+            title: 'Companies',
+          },
+          url: '/companies',
+      })
+
+      .state('app.register-company', {
+        templateUrl: 'views/companies/create-company.html',
+        url: '/register-company',
+        resolve: {
+            deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+              return $ocLazyLoad.load([
+                {
+                  insertBefore: '#load_styles_before',
+                  files: [
+                            ]
+                        },
+                {
+                  files: [
+                                'vendor/bootstrap/js/tab.js',
+                                'vendor/jquery-validation/dist/jquery.validate.min.js',
+                                'vendor/twitter-bootstrap-wizard/jquery.bootstrap.wizard.min.js'
+                            ]
+                        }]).then(function () {
+                return $ocLazyLoad.load('scripts/controllers/companies/registercompany.js');
+              });
+                    }]
+          },
+        data: {
+            title: 'Register new Company',
+          }
+      })
+
+      .state('app.edit-company', {
+        templateUrl: 'views/companies/edit-company.html',
+        url: '/edit-company/:id',
+        resolve: {
+            deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                    return $ocLazyLoad.load([
+                     
+                      {
+                        files: [
+                                      'vendor/jquery-validation/dist/jquery.validate.min.js',
+                                  ]
+                              }]).then(function () {
+                      return $ocLazyLoad.load('scripts/controllers/companies/editcompany.js');
+                    });
+                    }]
+          },
+        data: {
+            title: 'Update Company',
+          }
+      })
+
+
       .state('app.openings', {
-        templateUrl: 'views/candidates/candidateBasicInfo.html',
+        templateUrl: 'views/openings/openings.html',
+        resolve: {
+            deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+              return $ocLazyLoad.load('scripts/controllers/openings/openings.js')
+              }]
+          },
+          data: {
+            title: 'Openings',
+          },
           url: '/openings',
       })
-      
+      .state('app.create-opening', {
+        templateUrl: 'views/openings/create-opening.html',
+        url: '/create-opening',
+        resolve: {
+            deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+              return $ocLazyLoad.load([
+                {
+                  insertBefore: '#load_styles_before',
+                  files: [
+                            ]
+                        },
+                {
+                  files: [
+                                'vendor/bootstrap/js/tab.js',
+                                'vendor/jquery-validation/dist/jquery.validate.min.js',
+                                'vendor/twitter-bootstrap-wizard/jquery.bootstrap.wizard.min.js',
+                                'vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.js',
+                                'vendor/bootstrap-datepicker/dist/css/bootstrap-datepicker3.css'
+                            ]
+                        }]).then(function () {
+                return $ocLazyLoad.load('scripts/controllers/openings/create-opening.js');
+              });
+                    }]
+          },
+        data: {
+            title: 'Create new Opening',
+          }
+      })
+      .state('app.users', {
+        templateUrl: 'views/users/users.html',
+        resolve: {
+            deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+              return $ocLazyLoad.load('scripts/controllers/users/users.js')
+              }]
+          },
+          data: {
+            title: 'Users',
+          },
+          url: '/users',
+      })
+      .state('app.create-user', {
+        templateUrl: 'views/users/create-users.html',
+        url: '/create-users',
+        resolve: {
+            deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+              return $ocLazyLoad.load([
+                {
+                  insertBefore: '#load_styles_before',
+                  files: [
+                            ]
+                        },
+                {
+                  files: [
+                                'vendor/bootstrap/js/tab.js',
+                                'vendor/jquery-validation/dist/jquery.validate.min.js',
+                                'vendor/twitter-bootstrap-wizard/jquery.bootstrap.wizard.min.js',
+                                'vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.js',
+                                'vendor/bootstrap-datepicker/dist/css/bootstrap-datepicker3.css'
+                            ]
+                        }]).then(function () {
+                return $ocLazyLoad.load('scripts/controllers/users/create-users.js');
+              });
+                    }]
+          },
+        data: {
+            title: 'Create new User',
+          }
+      })
       .state('app.candidates', {
         templateUrl: 'views/candidates/candidates.html',
         resolve: {
