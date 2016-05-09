@@ -5,10 +5,37 @@
 		    <div class="row no-margin">
 		      <div class="col-lg-12">
 		        <form class="form-horizontal" role="form">
-		          <label>Profile Box</label>
-		          <div>{{name}}</div>
-		          <div>{{email}}</div>
-		          <div>{{phone}}</div>
+
+		          <div clas="row">
+			         	<div class="col-lg-12 text-center">
+		          			<img src="images/profileImg.png"/>
+		          		</div>
+					</div>
+
+		          <div clas="row">
+			         	<div class="col-lg-12 text-center" style="margin-top:7px;font-size:20px;">
+		          			<span ng-model="profileObj.first_name" >
+				              {{profileObj.first_name +' '+ profileObj.last_name}}
+				            </span>
+		          		</div>
+					</div>
+
+					<div clas="row">
+			         	<div class="col-lg-12 text-center" style="margin-top:7px;font-size:15px;">
+		          			<span ng-model="profileObj.first_name" >
+				              {{profileObj.email }}
+				            </span>
+		          		</div>
+					</div>
+
+					<div clas="row">
+			         	<div class="col-lg-12 text-center" style="margin-top:7px;font-size:15px;">
+		          			<span ng-model="profileObj.first_name" >
+				              {{profileObj.phone_number }}
+				            </span>
+		          		</div>
+					</div>
+
 		        </form>
 		      </div>
 		    </div>
@@ -20,23 +47,65 @@
 		    <div class="row no-margin">
 		      <div class="col-lg-12">
 		        <form class="form-horizontal" role="form">
-		          <label></label>
+		          <label class="heading2">Assigned Openings {{ candidateJobs.length }}</label>
 		          <button class="btn btn-primary btn-xs pull-right" data-ng-click="assignOpening()">Assign another Opening</button>
 
+		            <table class="table table-hover table-condensed align-middle">
+				        <tr class="bold">
+				          <td style="width:15%">JOB NAME</td>
+				          <td style="width:15%">STAGE</td>
+				          <td style="width:25%">COMPANY</td>
+				          <td style="width:15%">CANDIDATE/JOB RATE</td>
+				        </tr>
+				        <tr ng-repeat="jobs in candidateJobs">
+				          <td>
+				            <!-- editable username (text with validation) -->
+				            <span e-name="jobName" e-form="rowform" e-required class="linkClick" ng-click="editProfile({{candidate}})">
+				              {{ jobs.job.title || 'empty' }}
+				            </span>
+				          </td>
+				          <td>
+				            <!-- editable status (select-local) -->
+				            <span e-name="stage" e-form="rowform">
+				              {{ jobs.stage }}
+				            </span>
+				          </td>
+				          <td>
+				            <!-- editable group (select-remote) -->
+				            <span e-name="company" e-form="rowform">
+				              {{ jobs.company}}
+				            </span>
+				          </td>
+				          <td>
+				            <!-- editable group (select-remote) -->
+				            <span e-name="jobRate" e-form="rowform">
+				              {{ jobs.job.bill_rate}}
+				            </span>
+				          </td>
+
+				          <td style="white-space: nowrap">            
+				            <span e-name="jobName" e-form="rowform" e-required class="linkClick" ng-click="changeStage({{jobs}})">
+				              Change Stage
+				            </span>
+				            </div>
+				          </td>
+				        </tr>
+				      </table>
+		          </div>
 		        </form>
 		      </div>
 		    </div>
 		  </div>
 	</div>
-	</div>
+</div>
 	<div class="row" >
 		<div class="panel mb25 col-lg-6 col-sm-12" style="background: transparent;">
 			  <div class="panel-body" style="margin:0px 5px;background: #fff;">
 			    <div class="row no-margin">
 			      <div class="col-lg-12">
 			        <form class="form-horizontal" role="form">
-			          <label>Documents</label>
-			          <button class="btn btn-primary btn-xs pull-right" data-ng-click="uploadDocument()">Upload a Document</button>
+			           	<label class="heading2">Documents</label>
+			          	<button class="btn btn-primary btn-xs pull-right" data-ng-click="uploadDocument()">Upload a Document</button>
 
 			        </form>
 			      </div>
@@ -49,7 +118,7 @@
 			    <div class="row no-margin">
 			      <div class="col-lg-14">
 			        <form class="form-horizontal" role="form">
-			          <label>Skills and Experience(yrs)</label>
+			        	<label class="heading2">Skills and Experience(yrs)</label>
 			          <div clas="row">
 			          	<div class="col-lg-12" ng-repeat="skill in skills">
 		          			<span>

@@ -346,7 +346,7 @@ angular
           data: {
             title: 'Candidates',
           },
-          url: '/candidateedit'
+          url: '/candidateedit/:candidateData'
       })
 
       .state('app.candidatedetails', {

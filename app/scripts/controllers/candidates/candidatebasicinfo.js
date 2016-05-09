@@ -23,18 +23,29 @@ function candidateBasicInfoCtrl($scope, $state, $location, candidateService, $ro
 		"years": "",
 	    "recent": true
 	};
-	$scope.requestType = $scope.$stateParams.page;
+	
+	$scope.requestType = $scope.$stateParams.candidateData ? "create" :  $scope.$stateParams.page;
+	$scope.profileObj  = $scope.$stateParams.candidateData ? JSON.parse($scope.$stateParams.candidateData) : $scope.profileObj;
+	$scope.profileBtn  = $scope.$stateParams.candidateData ? "Edit Profile" : "Create Profile";
 
   	$scope.createProfile = function () {
-		candidateService.fnAddProfile(
+  		if($scope.profileBtn == "Create Profile"){
+  			candidateService.fnAddProfile(
 			$scope.profileObj).then(function(response){
-				debugger;
-				//$rootScope.profileData = 
-				//$location.path('/candidateuploaddata');
 				$state.go('app.candidateuploaddata',{"candidateId": response.data.id});
 			},function(){
 				console.log("in candidateCtrl success:",arguments);
 			});
+  		}
+  		else{
+			candidateService.fnEditProfile(
+				$scope.profileObj).then(function(response){
+					$state.go('app.candidateuploaddata',{"candidateId": response.data.id});
+				},function(){
+					console.log("in candidateCtrl success:",arguments);
+				});
+  		}
+		
   	};
 
   	$scope.addSkill = function () {

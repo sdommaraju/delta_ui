@@ -18,7 +18,7 @@
         <tr ng-repeat="candidate in candidates">
           <td>
             <!-- editable username (text with validation) -->
-            <span editable-text="user.name" e-name="name" e-form="rowform" e-required>
+            <span editable-text="user.name" e-name="name" e-form="rowform" e-required class="linkClick" ng-click="editProfile({{candidate}})">
               {{ candidate.first_name +' '+ candidate.last_name || 'empty' }}
             </span>
           </td>
@@ -52,18 +52,9 @@
               {{ candidate.created_by }}
             </span>
           </td>
-          <td style="white-space: nowrap">
-            <!-- form -->
-            <form editable-form name="rowform" onbeforesave="saveUser($data, user.id)" ng-show="rowform.$visible" class="form-buttons form-inline" shown="inserted == user">
-              <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-primary btn-xs">
-                save
-              </button>
-              <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()" class="btn btn-default btn-xs">
-                cancel
-              </button>
-            </form>
+          <td style="white-space: nowrap">            
             <div class="buttons" ng-show="!rowform.$visible">
-              <button class="btn btn-primary btn-xs" ng-click="editCandidate({{ candidate.id }})">edit</button>
+              <button class="btn btn-primary btn-xs" ng-click="editCandidate({{ candidate }})">edit</button>
             </div>
           </td>
         </tr>
