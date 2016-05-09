@@ -393,7 +393,7 @@ angular
               }]
           },
           data: {
-            title: 'candidatesUploadCtrl',
+            title: 'Candidates Data',
           },
           url: '/candidateuploaddata/:candidateId'
       })

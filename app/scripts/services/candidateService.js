@@ -64,6 +64,7 @@ function candidateService($http, ajaxService) {
   };
 
   output.fnAddSkills = function (oData) {
+    
     return ajaxService.fnPostData({
       url:urls.addSkills+'/'+oData.id+'/skills',
       data:oData}).then(function(response){
@@ -73,6 +74,7 @@ function candidateService($http, ajaxService) {
     });
   };
 
+  
   output.fnFetchAllSkills = function(oData) {
     return ajaxService.fnGetData({
       url:urls.addSkills+'/'+oData.id+'/skills',

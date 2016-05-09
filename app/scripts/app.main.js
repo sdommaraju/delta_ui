@@ -14,7 +14,7 @@ angular
       };
       
       $scope.app = {
-        name: 'Urban',
+        name: 'DELTA',
         author: 'Nyasha',
         version: '1.0.0',
         year: (new Date()).getFullYear(),
