@@ -12,9 +12,9 @@ function loginCtrl($scope, $state, $rootScope, AUTH_EVENTS, AuthService) {
       $scope.setCurrentUser(user);
       $scope.user = user;
 
-      if($scope.user.role_id==1){
+      if($scope.user.role.id==1){
         $state.go('app.agencies');
-      } else if($scope.user.role_id) {
+      } else if($scope.role.id) {
         $state.go('app.dashboard');  
       } else {
         $state.go('user.login'); 
