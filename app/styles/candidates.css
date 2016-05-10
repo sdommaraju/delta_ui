@@ -24,3 +24,16 @@
 .openingsDiv .control-label { 
 	text-align: left !important;
 }
+
+.sidebar-panel, .sidebar-panel > .brand { 
+	background-color: #0099cc !important;
+}
+
+.sidebar-panel > nav a {
+	color : #fff;
+}
+
+.logoText { 
+	color : #fff;
+	font-size: 22px;
+}
