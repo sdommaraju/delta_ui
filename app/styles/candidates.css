@@ -37,3 +37,7 @@
 	color : #fff;
 	font-size: 22px;
 }
+
+.active { 
+	background-color: #3f485a; 
+}
