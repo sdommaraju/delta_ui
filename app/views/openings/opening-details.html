@@ -1,0 +1,85 @@
+<div class="row" data-ng-controller="openingDetailsCtrl">
+<div class="row" >
+  <div class="panel mb25 col-lg-12 col-sm-12" style="background: transparent;">
+    <div class="panel-body" style="margin:0px 5px;background: #fff;">
+        <div class="table-responsive">
+              <label>Assigned Candidates  for opening : </label><label class="bold">{{openingDetails.title}} ({{ cnt = openingCandidates.screening.length+openingCandidates.phone_interview.length+openingCandidates.face_to_face.length+openingCandidates.job_offered.length+openingCandidates.job_accepted.length+openingCandidates.job_rejected.length}})</label>
+               
+                <table  class="table table-striped mb0">
+                  <tr align="center" style="font-size:20px;">
+                      <td ><span>{{ cnt }}</span><br><br><span>/ {{openingDetails.openings_available}}</span></td>
+                      <td class="linkClick" ng-click="openingCandidatesList('screening')"><span>{{openingCandidates.screening.length}}</span><br><br><span>Screening</span></td>
+                      <td class="linkClick" ng-click="openingCandidatesList('phone_interview')"><span>{{openingCandidates.phone_interview.length}}</span><br><br><span>Phone Interview</span></td>
+                      <td class="linkClick" ng-click="openingCandidatesList('face_to_face')"><span>{{openingCandidates.face_to_face.length}}</span><br><br><span>Face to Face</span></td>
+                      <td class="linkClick" ng-click="openingCandidatesList('job_offered')"><span>{{openingCandidates.job_offered.length}}</span><br><br><span>Job Offered</span></td>
+                      <td class="linkClick" ng-click="openingCandidatesList('job_accepted')"><span>{{openingCandidates.job_accepted.length}}</span><br><br><span>Job Accepted</span></td>
+                      <td class="linkClick" ng-click="openingCandidatesList('job_rejected')"><span>{{openingCandidates.job_rejected.length}}</span><br><br><span>Job Rejected</span></td>
+                  </tr>
+                </table>
+
+                <table class="table table-hover table-condensed align-middle mt30">
+                <tr class="bold">
+                  <td style="width:15%">NAME{{}}</td>
+                  <td style="width:15%">EMAIL</td>
+                  <td style="width:25%">PHONE</td>
+                  <td style="width:15%"></td>
+                </tr>
+                <tr ng-repeat="candidate in canidatesList">
+                  <td>
+                    <!-- editable username (text with validation) -->
+                    <span e-name="jobName" e-form="rowform" e-required class="linkClick" ng-click="editProfile({{candidate}})">
+                      {{ candidate.first_name + ' ' +candidate.last_name }}
+                    </span>
+                  </td>
+                  <td>
+                    <!-- editable status (select-local) -->
+                    <span e-name="stage" e-form="rowform">
+                      {{ candidate.email }}
+                    </span>
+                  </td>
+                  <td>
+                    <!-- editable group (select-remote) -->
+                    <span e-name="company" e-form="rowform">
+                      {{ candidate.phone_number }}
+                    </span>
+                  </td>
+
+                  <td style="white-space: nowrap">            
+                    <span e-name="jobName" e-form="rowform" e-required class="linkClick" ng-click="changeStage({{jobs}})">
+                      Change Stage
+                    </span>
+                    </div>
+                  </td>
+                </tr>
+              </table>
+              </div>
+      </div>
+  </div>
+</div>
+<div class="row" >
+  <div class="panel mb25 col-lg-8 col-sm-12" style="background: transparent;">
+    <div class="panel-body" style="margin:0px 5px;background: #fff;">
+        <div class="table-responsive">
+              <label class="bold">Job Description</label>
+              <div class="mt30">
+                  {{openingDetails.description}}
+              </div> 
+        </div>
+    </div>
+  </div>
+  <div class="panel mb25 col-lg-4 col-sm-12" style="background: transparent;">
+    <div class="panel-body" style="margin:0px 5px;background: #fff;">
+        <div class="table-responsive">
+              <label class="bold">Billing Info</label>
+              <div class="mt30">
+                  Billing Rate : {{openingDetails.bill_rate}}<br>
+                  Pay Rate : {{openingDetails.pay_rate}}<br>
+                  # of Openings : {{openingDetails.openings_available}}<br>
+                  # of max  Submissions : {{openingDetails.max_allowed_submissions}}<br>
+              </div>
+
+        </div>
+      </div>
+  </div>
+</div>
+</div>

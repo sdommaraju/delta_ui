@@ -15,6 +15,9 @@ function openingsCtrl($scope, $state, $location, authService, openingsService) {
   $scope.editCandidate = function(candidateId) {
     $state.go('app.candidateuploaddata',{"candidateId": candidateId});
   }
+  $scope.openingDetails = function(openingId) {
+    $state.go('app.opening-details',{"id": openingId});
+  }
   $scope.init = function () {
    openingsService.fnGetOpenings({}).then(function(data){
         $scope.openings = data.data;

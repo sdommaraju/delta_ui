@@ -68,42 +68,21 @@ function ajaxService($http,Session) {
       });
   }
 
+
   output.fnPutData = function (oData) {
-    debugger;
       angular.extend(oData.data, config);
       if(output.access_token){
         oData.data.access_token = output.access_token;
       }
       $http.defaults.headers.common.Accept = "application/vnd.delta.v1+json";
       $http.defaults.headers.common.Authorization = "Bearer "+oData.data.access_token;
-      return $http.post(oData.url, JSON.stringify(oData.data), {
-                  transformRequest: angular.identity,
-                  headers: {'Content-Type': undefined}
-               }).then(function(response){
+
+      return $http.put(oData.url, oData.data).then(function(response){
         return response;
       }, function(error){
         return error;
       });
   }
-
-
-  // output.fnPutData = function (oData) {
-  //     angular.extend(oData.data, config);
-  //     if(output.access_token){
-  //       oData.data.access_token = output.access_token;
-  //     }
-  //     $http.defaults.headers.common.Accept = "application/vnd.delta.v1+json";
-  //     $http.defaults.headers.common.Authorization = "Bearer "+oData.data.access_token;
-
-  //     return $http.put(oData.url, oData.data, {
-  //                 transformRequest: angular.identity,
-  //                 headers: {'Content-Type': undefined}
-  //              }).then(function(response){
-  //       return response;
-  //     }, function(error){
-  //       return error;
-  //     });
-  // }
 
   return output;
 }

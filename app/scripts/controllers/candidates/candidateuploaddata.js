@@ -34,6 +34,7 @@ function candidateUploadCtrl($scope, $location, $modal, candidateService, $rootS
   }
 
   $scope.uploadDocument = function () {
+  	debugger;
    	$modal.open({
 	    backdrop: true,
 	    backdropClick: false,
@@ -53,6 +54,7 @@ function candidateUploadCtrl($scope, $location, $modal, candidateService, $rootS
   }
 
   $scope.addMoreSkills = function () {
+  	debugger;
   	$scope.skillsObj.id		=  $scope.candidateId;
   	$scope.skillsObj.skill 	= $scope.skill;
 	$scope.skillsObj.experience = $scope.exp;

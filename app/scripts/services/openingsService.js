@@ -5,6 +5,7 @@ function openingsService($http, ajaxService) {
       urls    = {
         addOpening: 'http://delta.srinutech.com/api/jobs',
         getOpenings: 'http://delta.srinutech.com/api/jobs',
+        getOpeningCandidates: 'http://delta.srinutech.com/api/jobs',
         getCompanies: 'http://delta.srinutech.com/api/companies',
 
       };
@@ -30,6 +31,16 @@ function openingsService($http, ajaxService) {
   output.fnGetOpenings = function () {
     return ajaxService.fnGetData({
       url:urls.getOpenings,
+      data:{}
+    }).then(function(response){
+      return response.data;
+    }, function(error){
+      return error;
+    });
+  }
+  output.fnGetOpeningCandidates = function (openingId) {
+    return ajaxService.fnGetData({
+      url:urls.getOpeningCandidates+'/'+openingId+'/candidates',
       data:{}
     }).then(function(response){
       return response.data;

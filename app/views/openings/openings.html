@@ -17,7 +17,7 @@
         <tr ng-repeat="job in openings">
           <td>
             <!-- editable username (text with validation) -->
-            <span editable-text="user.name" e-name="name" e-form="rowform" e-required>
+            <span editable-text="user.name" e-name="name" e-form="rowform" e-required class="linkClick" ng-click="openingDetails({{job.id}})">
               {{ job.title }}
             </span>
           </td>

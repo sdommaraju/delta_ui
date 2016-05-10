@@ -270,6 +270,29 @@ angular
             title: 'Create new Opening',
           }
       })
+
+    .state('app.opening-details', {
+        templateUrl: 'views/openings/opening-details.html',
+        url: '/opening-details/:id',
+        resolve: {
+            deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                    return $ocLazyLoad.load([
+                     
+                      {
+                        files: [
+                                      'vendor/jquery-validation/dist/jquery.validate.min.js',
+                                  ]
+                              }]).then(function () {
+                      return $ocLazyLoad.load('scripts/controllers/openings/opening-details.js');
+                    });
+                    }]
+          },
+        data: {
+            //title: 'Opening Details',
+          }
+      })
+
+
       .state('app.users', {
         templateUrl: 'views/users/users.html',
         resolve: {
@@ -370,7 +393,7 @@ angular
               }]
           },
           data: {
-            title: 'candidatesUploadCtrl',
+            title: 'Candidates Data',
           },
           url: '/candidateuploaddata/:candidateId'
       })
