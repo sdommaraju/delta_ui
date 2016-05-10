@@ -86,9 +86,9 @@ function candidateService($http, ajaxService) {
   };
 
   output.searchBySkills = function (oData) {
-    return ajaxService.fnGetData({
+     return ajaxService.fnGetData({
       url:urls.search,
-      data : {skills:oData.skills}}).then(function(response){
+      data : {skills:oData.skills,state:oData.state,city:oData.city,zip:oData.zip,pay_range_min:oData.pay_range_min,pay_range_max:oData.pay_range_max}}).then(function(response){
       return response;
     }, function(error){
       return error;
