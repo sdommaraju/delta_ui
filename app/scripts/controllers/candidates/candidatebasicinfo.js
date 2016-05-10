@@ -18,6 +18,8 @@ function candidateBasicInfoCtrl($scope, $state, $location, candidateService, $ro
 	    "miles_radius": null
 	};
 
+	$scope.searchSkills = [{}];
+
 	$scope.search = {
 		"keyword": "",
 		"years": "",
@@ -50,23 +52,33 @@ function candidateBasicInfoCtrl($scope, $state, $location, candidateService, $ro
 
   	$scope.addSkill = function () {
   		//var skills = {[scope.search.keyword,scope.search.years]};
+  		$scope.searchSkills.push({});
 
-  		candidateService.searchBySkills(
+  		/*candidateService.searchBySkills(
 			skills).then(function(){
 				console.log("in candidateCtrl success:",arguments);
 				//$rootScope.profileData = 
 				$location.path('/candidateuploaddata');
 			},function(){
 				console.log("in candidateCtrl success:",arguments);
-			});
+			});*/
   	};
 
   	$scope.search = function () {
   		var oSkills = {},
 	     skillsArr = [];
-
-	    skillsArr.push({"skill":$scope.search.keyword, "experience":$scope.search.years});
+	    debugger;
+	    angular.forEach($scope.searchSkills,function(value){
+	    	skillsArr.push({"skill":value.keyword, "experience":value.years});
+	    });
+	    //skillsArr.push({"skill":$scope.search.keyword, "experience":$scope.search.years});
 		oSkills.skills = JSON.stringify(skillsArr);
+		
+		oSkills.state = ($scope.search.state)?$scope.search.state:'';
+		oSkills.city = ($scope.search.city)?$scope.search.city:'';
+		oSkills.zip = ($scope.search.zip)?$scope.search.zip:'';
+		oSkills.pay_range_min = ($scope.search.pay_range_min)?$scope.search.pay_range_min:'';
+		oSkills.pay_range_max = ($scope.search.pay_range_max)?$scope.search.pay_range_max:'';
 
 	    candidateService.searchBySkills(
 	   oSkills).then(function(response){
