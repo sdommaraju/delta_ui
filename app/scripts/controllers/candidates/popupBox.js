@@ -21,6 +21,11 @@
 
         candidateService.fnUploadResumeByFile(
   			{id:$scope.candidateId},fd).then(function(response){
+          $scope.documents = {
+            "title":response.data.resume_file,
+            "created":response.data.created_at,
+            "updated":response.data.updated_at
+          };
   				$state.go('app.candidateuploaddata',{"candidateId": $scope.candidateId});
           $modalInstance.close(response.data);
   			},function(){

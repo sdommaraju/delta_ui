@@ -5,13 +5,8 @@ function candidateUploadCtrl($scope, $location, $modal, candidateService, $rootS
 	$scope.candidateId = $scope.$stateParams.candidateId;
 	$scope.skills = {};
 	$scope.skillsObj = {};
-	$scope.profileObj = {
-		"id" : 3,
-		"first_name": "mallesh",
-	    "last_name": "m",
-	    "email": "m.mallesh@gmail.com",
-	    "phone_number": "1234567"
-	};
+	$scope.profileObj = {};
+	$scope.documents = {};
 
   $scope.assignOpening = function () {
 	$modal.open({
@@ -34,7 +29,6 @@ function candidateUploadCtrl($scope, $location, $modal, candidateService, $rootS
   }
 
   $scope.uploadDocument = function () {
-  	debugger;
    	$modal.open({
 	    backdrop: true,
 	    backdropClick: false,
@@ -54,7 +48,6 @@ function candidateUploadCtrl($scope, $location, $modal, candidateService, $rootS
   }
 
   $scope.addMoreSkills = function () {
-  	debugger;
   	$scope.skillsObj.id		=  $scope.candidateId;
   	$scope.skillsObj.skill 	= $scope.skill;
 	$scope.skillsObj.experience = $scope.exp;
@@ -77,6 +70,12 @@ function candidateUploadCtrl($scope, $location, $modal, candidateService, $rootS
   	candidateService.fnGetCandidateJobs(
 		candidate).then(function(response){
 			$scope.candidateJobs = response.data.data;
+			$scope.profileObj = $scope.candidateJobs[0].candidate;
+			$scope.documents = {
+				"title":$scope.candidateJobs[0].candidate.resume_file,
+				"created":$scope.candidateJobs[0].candidate.created_at,
+				"updated":$scope.candidateJobs[0].candidate.updated_at
+			};
 		},function(){
 			console.log("in candidateCtrl success:",arguments);
 		});
@@ -139,6 +138,7 @@ function candidateUploadCtrl($scope, $location, $modal, candidateService, $rootS
 
 	$scope.getCandidateJobs();
 	$scope.getAllJobs();
+
   }
 
   $scope.init();
