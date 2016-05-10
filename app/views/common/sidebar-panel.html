@@ -1,8 +1,9 @@
 <div class="brand">
 
   <!-- logo -->
-  <div class="brand-logo">
-    <img data-ng-src="images/logo.png" height="15" alt="">
+  <div class="brand-logo logoText">
+    <!-- <img data-ng-src="images/logo.png" height="15" alt=""> -->
+    {{app.name}}
   </div>
   <!-- /logo -->
 
@@ -25,40 +26,40 @@
     <!-- dashboard -->
     <li ui-sref-active="active" >
       <a href="#/">
-        <i class="fa fa-flask"></i>
-        <span>Dashboard</span>
+        <i class="fa fa-tachometer"></i>
+        <span>DASHBOARD</span>
       </a>
     </li>
     <!-- /dashboard -->
     <li ui-sref-active="active" >
       <a ui-sref="app.agencies">
-        <i class="fa fa-flask"></i>
-        <span>Agencies</span>
+        <i class="fa fa-user-plus"></i>
+        <span>AGENCIES</span>
       </a>
     </li>
 
     <li ui-sref-active="active" >
       <a ui-sref="app.openings">
         <i class="fa fa-flask"></i>
-        <span>Openings</span>
+        <span>OPENINGS</span>
       </a>
     </li>
     <li ui-sref-active="active" >
       <a ui-sref="app.candidates">
-        <i class="fa fa-flask"></i>
-        <span>Candidates</span>
+        <i class="fa fa-user"></i>
+        <span>CANDIDATES</span>
       </a>
     </li>
     <li ui-sref-active="active" >
       <a ui-sref="app.companies">
-        <i class="fa fa-flask"></i>
-        <span>Companies</span>
+        <i class="fa fa-building-o"></i>
+        <span>COMPANIES</span>
       </a>
     </li>
     <li ui-sref-active="active" >
       <a ui-sref="app.users">
-        <i class="fa fa-flask"></i>
-        <span>Users</span>
+        <i class="fa fa-users"></i>
+        <span>USERS</span>
       </a>
     </li>
   </ul>
