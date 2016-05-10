@@ -87,7 +87,6 @@
 				            <span e-name="jobName" e-form="rowform" e-required class="linkClick" ng-click="changeStage({{jobs}})">
 				              Change Stage
 				            </span>
-				            </div>
 				          </td>
 				        </tr>
 				      </table>
@@ -105,7 +104,18 @@
 			        <form class="form-horizontal" role="form">
 			           	<label class="heading2">Documents</label>
 			          	<button class="btn btn-primary btn-xs pull-right" data-ng-click="uploadDocument()">Upload a Document</button>
-
+			          	<div class="table-responsive">
+			          		<table  class="table table-striped mb0">
+			          			<tr>
+			          				<td style="width:15%">TTILE</td>
+                  					<td style="width:15%">DATE</td>
+			          			</tr>
+			          			<tr >
+			          				<td>{{documents.title}}</td>
+                  					<td>{{documents.updated}}</td>
+			          			</tr>
+			          		</table>
+			          	</div>
 			        </form>
 			      </div>
 			    </div>
