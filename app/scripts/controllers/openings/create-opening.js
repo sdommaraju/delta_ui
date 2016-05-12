@@ -94,7 +94,7 @@ function createOpeningCtrl($scope, $state, $location, openingsService) {
 	     var $valid = angular.element('#openingForm').valid(),
 	        $validator;
 	      if (!$valid) {
-	        $validator.focusInvalid();
+	        //$validator.focusInvalid();
 	        return false;
 	      }
 	      if(index==3){

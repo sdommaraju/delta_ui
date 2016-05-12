@@ -1,4 +1,8 @@
 <div class="panel mb25 row" data-ng-controller="registerCompanyCtrl">
+  <div class="panel-heading">
+      Register new Company
+      <button class="btn btn-primary btn-xs pull-right" ui-sref="app.companies">Cancel</button>
+  </div>
   <div class="panel-body">
   <form id="companyForm" class="form-horizontal" role="form" ui-jq="validate" ui-options="validationOpt">
     <div class="row no-margin">
@@ -37,14 +41,14 @@
           </div>
           
           <div class="wizard-pager">
+            <div class="pull-left">
+               <button class="btn btn-primary btn-xs" ui-sref="app.companies">Back To List</button>
+            </div>
             <div class="pull-right">
                <button class="btn btn-primary btn-xs" data-ng-click="createCompany(company)">Create</button>
             </div>
          </div>
-         <div class="form-group">
-            <a ui-sref="app.companies" class="btn btn-primary btn-xs">Back To List</a>
-            
-         </div>
+         
 
         </form>
       </div>

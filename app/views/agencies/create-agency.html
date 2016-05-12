@@ -1,4 +1,8 @@
-<div data-ng-controller="registerAgencyCtrl" ui-jq="checkBo">
+<div data-ng-controller="registerAgencyCtrl">
+  <div class="panel-heading">
+      Register new Agency
+      <button class="btn btn-primary btn-xs pull-right" ui-sref="app.agencies">Cancel</button>
+  </div>
   <form id="agencyForm" class="form-horizontal" role="form" ui-jq="validate" ui-options="validationOpt">
     <div class="box-tab justified" id="rootwizard" ui-jq="bootstrapWizard" ui-options="wizardOpt">
       <ul class="nav nav-tabs">
@@ -96,11 +100,16 @@
         <div class="tab-pane" id="tab3">Congradulations your account has been created</div>
 
         <div class="wizard-pager">
+           <div class="pull-left">
+            <button type="button" class="btn btn-primary" ui-sref="app.agencies">Back To List</a>
+          </div>
           <div class="pull-right">
            <button type="button" class="btn btn-primary button-next" id="next-button">Next</button>
           </div>
         </div>
+        
       </div>
     </div>
   </form>
+</div>
 </div>

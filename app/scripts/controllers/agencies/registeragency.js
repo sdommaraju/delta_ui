@@ -64,7 +64,7 @@ function registerAgencyCtrl($scope, $location, agenciesService) {
      var $valid = angular.element('#agencyForm').valid(),
         $validator;
       if (!$valid) {
-        $validator.focusInvalid();
+        
         return false;
       }
 

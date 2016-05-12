@@ -1,6 +1,6 @@
 'use strict';
 
-function ajaxService($http,Session) {
+function ajaxService($http,$state,Session) {
   var output = {},
     config = {
       grant_type:'password',
@@ -32,7 +32,12 @@ function ajaxService($http,Session) {
     }).then(function(response){
       return response;
     }, function(error){
-      return error;
+      if(error.status==500){
+        $state.go('user.login');
+      } else {
+        return error;  
+      }
+      
     });
   }
 
@@ -46,7 +51,11 @@ function ajaxService($http,Session) {
       return $http.post(oData.url, oData.data).then(function(response){
         return response;
       }, function(error){
-        return error;
+        if(error.status==500){
+          $state.go('user.login');
+        } else {
+          return error;  
+        }
       });
   }
 
@@ -64,7 +73,11 @@ function ajaxService($http,Session) {
                }).then(function(response){
         return response;
       }, function(error){
-        return error;
+        if(error.status==500){
+          $state.go('user.login');
+        } else {
+          return error;  
+        }
       });
   }
 
@@ -80,7 +93,11 @@ function ajaxService($http,Session) {
       return $http.put(oData.url, oData.data).then(function(response){
         return response;
       }, function(error){
-        return error;
+        if(error.status==500){
+          $state.go('user.login');
+        } else {
+          return error;  
+        }
       });
   }
 
@@ -89,4 +106,4 @@ function ajaxService($http,Session) {
 
 angular
   .module('urbanApp')
-  .factory('ajaxService', ['$http','Session', ajaxService]);
+  .factory('ajaxService', ['$http','$state','Session', ajaxService]);

@@ -15,12 +15,12 @@ function createUserCtrl($scope, $state, $location, usersService) {
 	      last_name: {
 	        required: true
 	      },
-	      email: {
+	      emailId: {
 	        required: true,
 	        email:true,
 	        minlength: 1
 	      },
-	      password: {
+	      passwordId: {
 	        required: true
 	      },
 	      role_id: {
