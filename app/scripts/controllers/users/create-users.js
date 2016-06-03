@@ -5,6 +5,7 @@ function createUserCtrl($scope, $state, $location, usersService) {
 	$scope.users = {};
 	$scope.userDetails = {};
 	$scope.roles = {};
+	$scope.appUser = {};
 
 	$scope.validationOpt = {
 	    rules: {
@@ -35,25 +36,42 @@ function createUserCtrl($scope, $state, $location, usersService) {
 	      },function(){
 	        console.log("in candidateCtrl error:",arguments);
 	      });
-	  }
+	   
+	   usersService.fnGetGroups({}).then(function(data){
+	        $scope.groups = data.data;
+	      },function(){
+	        console.log("in candidateCtrl error:",arguments);
+	      });
+	}
 
 	$scope.init();
 	
-	$scope.changeCompany = function() {
-		var companyId = $scope.opening.company_id;
-		$scope.companyDetails = $scope.companies.filter(function(company){
-         return company.id==companyId;
-        });
-        $scope.company = $scope.companyDetails[0];
+	$scope.changeRole = function() {
+		var role_id = $scope.appUser.role_id;
+		if(role_id==4){
+			$scope.showGroupName = true;
+			$scope.showGroupList = false;
+		} else if(role_id==5){
+			$scope.showGroupName = false;
+			$scope.showGroupList = true;
+		} else {
+			$scope.showGroupName = false;
+			$scope.showGroupList = false;
+		}
 	}
 
 	$scope.createUser = function(appUser){
-		
 		var $valid = angular.element('#userForm').valid();
 	      if (!$valid) {
 	        return false;
 	      }
-
+	    if($scope.showGroupName){
+			appUser.group_type='add';
+		} else if($scope.showGroupList){
+			appUser.group_type='select';
+		} else {
+			appUser.group_type='na';
+		}
 	  	usersService.fnAddUser(appUser).then(function(response){
 		    $scope.userDetails = response.data.data;
 		    $state.go('app.users');

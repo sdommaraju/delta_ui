@@ -65,7 +65,6 @@ function createOpeningCtrl($scope, $state, $location, openingsService) {
 	}
 
 	$scope.createOpening = function(opening){
-	  	opening.agency_id=18;
 	  	openingsService.fnAddOpening(opening).then(function(response){
 		    $scope.openingDetails = response.data.data;
 		    $state.go('app.openings');

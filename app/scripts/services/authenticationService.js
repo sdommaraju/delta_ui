@@ -2,12 +2,13 @@
 angular
   .module('urbanApp')
   .factory('AuthService', function ($http, Session, ajaxService) {
+    console.log(ajaxService);
   var authService = {};
   var sessionData = {};
   var output  = {},
       urls    = {
-        login: 'http://delta.srinutech.com/api/access_token',
-        profile: 'http://delta.srinutech.com/api/user/profile',
+        login: ajaxService.config.api_url+'access_token',
+        profile: ajaxService.config.api_url+'user/profile',
         //login: 'http://localhost:9001/views/auth.json'
       };
 

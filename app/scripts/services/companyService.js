@@ -3,9 +3,9 @@
 function companyService($http, ajaxService) {
   var output  = this,
       urls    = {
-        addCompany: 'http://delta.srinutech.com/api/companies',
-        updateCompany: 'http://delta.srinutech.com/api/companies',
-        getCompanies: 'http://delta.srinutech.com/api/companies',
+        addCompany: ajaxService.config.api_url+'companies',
+        updateCompany: ajaxService.config.api_url+'companies',
+        getCompanies: ajaxService.config.api_url+'companies',
       };
 
   output.fnGetData = function (oData) {

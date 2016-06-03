@@ -3,10 +3,10 @@
 function openingsService($http, ajaxService) {
   var output  = this,
       urls    = {
-        addOpening: 'http://delta.srinutech.com/api/jobs',
-        getOpenings: 'http://delta.srinutech.com/api/jobs',
-        getOpeningCandidates: 'http://delta.srinutech.com/api/jobs',
-        getCompanies: 'http://delta.srinutech.com/api/companies',
+        addOpening: ajaxService.config.api_url+'jobs',
+        getOpenings: ajaxService.config.api_url+'jobs',
+        getOpeningCandidates: ajaxService.config.api_url+'jobs',
+        getCompanies: ajaxService.config.api_url+'companies',
 
       };
 

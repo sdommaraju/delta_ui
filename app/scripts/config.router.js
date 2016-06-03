@@ -116,8 +116,10 @@ angular
           },
           data: {
             title: 'Agencies',
+            access: false
           },
-          url: '/agencies',
+          url: '/agencies'
+
       })
 
       .state('app.register-agency', {

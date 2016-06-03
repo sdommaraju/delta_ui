@@ -3,9 +3,9 @@
 function agenciesService($http, ajaxService) {
   var output  = this,
       urls    = {
-        addAgency: 'http://delta.srinutech.com/api/agency',
-        updateAgency: 'http://delta.srinutech.com/api/agency',
-        getAgencies: 'http://delta.srinutech.com/api/agency',
+        addAgency: ajaxService.config.api_url+'agency',
+        updateAgency: ajaxService.config.api_url+'agency',
+        getAgencies: ajaxService.config.api_url+'agency',
       };
 
   output.fnGetData = function (oData) {

@@ -3,9 +3,10 @@
 function usersService($http, ajaxService) {
   var output  = this,
       urls    = {
-        addUser: 'http://delta.srinutech.com/api/users',
-        getUsers: 'http://delta.srinutech.com/api/users',
-        getRoles: 'http://delta.srinutech.com/api/user/roles',
+        addUser: ajaxService.config.api_url+'users',
+        getUsers: ajaxService.config.api_url+'users',
+        getRoles: ajaxService.config.api_url+'user/roles',
+        getGroups: ajaxService.config.api_url+'user/groups',
 
       };
 
@@ -47,6 +48,17 @@ function usersService($http, ajaxService) {
       return error;
     });
   }
+  output.fnGetGroups = function () {
+    return ajaxService.fnGetData({
+      url:urls.getGroups,
+      data:{}
+    }).then(function(response){
+      return response.data;
+    }, function(error){
+      return error;
+    });
+  }
+  
   output.fnUploadResumeByFile = function (oData,resume) {
     debugger;
     return ajaxService.fnPostDataFile({

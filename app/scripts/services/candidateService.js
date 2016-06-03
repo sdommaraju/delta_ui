@@ -3,14 +3,14 @@
 function candidateService($http, ajaxService) {
   var output  = this,
       urls    = {
-        addProfile: 'http://delta.srinutech.com/api/candidate',
-        getCandidates: 'http://delta.srinutech.com/api/candidate',
-        uploadFile: 'http://delta.srinutech.com/api/candidate',
-        addSkills: 'http://delta.srinutech.com/api/candidate',
-        search: 'http://delta.srinutech.com/api/candidate/search',
-        candidateJobs: 'http://delta.srinutech.com/api/candidate/',
-        allJobs: 'http://delta.srinutech.com/api/jobs',
-        assignJob: 'http://delta.srinutech.com/api/candidate/'
+        addProfile: ajaxService.config.api_url+'candidate',
+        getCandidates: ajaxService.config.api_url+'candidate',
+        uploadFile: ajaxService.config.api_url+'candidate',
+        addSkills: ajaxService.config.api_url+'candidate',
+        search: ajaxService.config.api_url+'search',
+        candidateJobs: ajaxService.config.api_url+'candidate/',
+        allJobs: ajaxService.config.api_url+'jobs',
+        assignJob: ajaxService.config.api_url+'andidate/'
       };
 
   output.fnGetData = function (oData) {
