@@ -1,6 +1,6 @@
 'use strict';
 
-function openingDetailsCtrl($scope, $state, $location, openingsService) {
+function openingDetailsCtrl($scope, $state, $modal, $location, openingsService) {
 
 	$scope.openingCandidates = {};
 	$scope.openingDetails = {};
@@ -17,6 +17,27 @@ function openingDetailsCtrl($scope, $state, $location, openingsService) {
 	        console.log("in candidateCtrl error:",arguments);
 	      });
 	}
+	$scope.changeStage = function (selectedJob,candidateId) {
+		debugger;
+	    $modal.open({
+	      backdrop: true,
+	      backdropClick: false,
+	      keyboard: false,
+	      templateUrl: 'views/changeStagePopup.html ',
+	      controller: 'PopupBoxController',
+	      resolve: {
+	          model: function() {
+	                  return {
+	                      title: "",
+	                      candidateId:candidateId,
+	                      buttons: [{result: true, label: 'Assign', cssClass: 'btn-primary'}],
+	                      jobStages: $scope.jobStages,
+	                      selectedJob : selectedJob
+	                  };
+	              }
+	      }
+	    });
+	  };
 	$scope.openingCandidatesList = function (stage) {
 	   $scope.canidatesList = $scope.openingCandidates[stage];
 	}
@@ -27,4 +48,4 @@ function openingDetailsCtrl($scope, $state, $location, openingsService) {
 
 angular
   .module('urbanApp')
-  .controller('openingDetailsCtrl', ['$scope','$state','$location','openingsService', openingDetailsCtrl]);
+  .controller('openingDetailsCtrl', ['$scope','$state','$modal','$location','openingsService', openingDetailsCtrl]);

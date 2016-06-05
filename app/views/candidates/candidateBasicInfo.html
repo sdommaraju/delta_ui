@@ -2,53 +2,53 @@
   <div class="panel-body col-lg-8 col-xs-12" ng-show="requestType == 'create'">
     <div class="row no-margin">
       <div class="col-lg-12">
-        <form class="form-horizontal" role="form">
+        <form id="candidateForm" class="form-horizontal" role="form" ui-jq="validate" ui-options="validationOpt">
           <div class="form-group">
             <label class="col-sm-2 control-label">PHONE</label>
             <div class="col-sm-10">
-              <input type="number" ng-model="profileObj.phone_number" class="form-control">
+              <input type="number" ng-model="profileObj.phone_number" class="form-control" required="true">
             </div>
           </div>
           <div class="form-group">
             <label class="col-sm-2 control-label">EMAIL ADDRESS</label>
             <div class="col-sm-10">
-              <input type="text" ng-model="profileObj.email" class="form-control" id="emailfield" name="emailfield">
+              <input type="text" ng-model="profileObj.email" class="form-control" id="emailfield" name="emailfield" required="true">
             </div>
           </div>
           <div class="form-group">
             <label class="col-sm-2 control-label">FIRST NAME</label>
             <div class="col-sm-10">
-              <input type="text" ng-model="profileObj.first_name" class="form-control">
+              <input type="text" ng-model="profileObj.first_name" class="form-control" id="first_name" name="first_name" required="true">
             </div>
           </div>
           <div class="form-group">
             <label class="col-sm-2 control-label">LAST NAME</label>
             <div class="col-sm-10">
-              <input type="text" ng-model="profileObj.last_name" class="form-control">
+              <input type="text" ng-model="profileObj.last_name" class="form-control" required="true" id="last_name" name="last_name">
             </div>
           </div>
           <div class="form-group">
             <label class="col-sm-2 control-label">ADDRESS</label>
             <div class="col-sm-10">
-              <input type="text" ng-model="profileObj.address1" class="form-control">
+              <input type="text" ng-model="profileObj.address1" class="form-control" required="true" id="address1" name="address1">
             </div>
           </div>
           <div class="form-group">
             <label class="col-sm-2 control-label">CITY</label>
             <div class="col-sm-10">
-              <input type="text" ng-model="profileObj.city" class="form-control">
+              <input type="text" ng-model="profileObj.city" class="form-control" required="true" id="city" name="city">
             </div>
           </div>
           <div class="form-group">
             <label class="col-sm-2 control-label">STATE</label>
             <div class="col-sm-10">
-              <input type="text" ng-model="profileObj.state" class="form-control">
+              <input type="text" ng-model="profileObj.state" class="form-control" required="true" id="state" name="state">
             </div>
           </div>
           <div class="form-group">
             <label class="col-sm-2 control-label">ZIP CODE</label>
             <div class="col-sm-10">
-              <input type="text" ng-model="profileObj.zip" class="form-control">
+              <input type="text" ng-model="profileObj.zip" class="form-control" required="true" id="zip" name="zip">
             </div>
           </div>
           <div class="form-group">
@@ -74,26 +74,26 @@
   <div class="panel-body  col-lg-4 col-xs-12" ng-show="requestType == 'create'">
     <div class="row no-margin">
       <div class="col-lg-12">
-        <form class="form-horizontal" role="form">
+        <form id="candidateForm1" class="form-horizontal" role="form"  ui-jq="validate" ui-options="validationOpt">
           <h3 class="text-center">Job Interests & Billing Info</h3>
           <div class="form-group">
             <label class="col-sm-4 control-label">SALARY</label>
             <div class="col-sm-8">
-              <input type="number" ng-model="profileObj.salary" class="form-control">
+              <input type="number" ng-model="profileObj.salary" class="form-control" required="true" id="salary" name="salary">
             </div>
           </div>
 
           <div class="form-group">
             <label class="col-sm-4 control-label">SALARY RANGE</label>
             <div class="col-sm-8">
-              <input type="number" ng-model="profileObj.salary_range" class="form-control">
+              <input type="number" ng-model="profileObj.salary_range" class="form-control" required="true" id="salary_range" name="salary_range">
             </div>
           </div>
 
           <div class="form-group">
             <label class="col-sm-4 control-label">Total YRS. OF EXPERIENCE</label>
             <div class="col-sm-8">
-              <input type="number" ng-model="profileObj.experience" class="form-control">
+              <input type="number" ng-model="profileObj.experience" class="form-control" required="true" id="experience" name="experience">
             </div>
           </div>
 

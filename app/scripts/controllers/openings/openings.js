@@ -25,7 +25,7 @@ function openingsCtrl($scope, $state, $location, authService, openingsService) {
         console.log("in candidateCtrl error:",arguments);
       });
   }
-
+  
   $scope.init();
 
 }

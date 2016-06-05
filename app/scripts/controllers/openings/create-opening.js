@@ -1,6 +1,6 @@
 'use strict';
 
-function createOpeningCtrl($scope, $state, $location, openingsService) {
+function createOpeningCtrl($scope, $state, $location, openingsService,usersService) {
 
 	$scope.opening = {};
 	$scope.openingDetails = {};
@@ -52,6 +52,12 @@ function createOpeningCtrl($scope, $state, $location, openingsService) {
 	      },function(){
 	        console.log("in candidateCtrl error:",arguments);
 	      });
+	   usersService.fnGetGroups({}).then(function(data){
+	        $scope.groups = data.data;
+	      },function(){
+	        console.log("in candidateCtrl error:",arguments);
+	      });
+
 	  }
 
 	$scope.init();
@@ -96,7 +102,7 @@ function createOpeningCtrl($scope, $state, $location, openingsService) {
 	        //$validator.focusInvalid();
 	        return false;
 	      }
-	      if(index==3){
+	      if(index==4){
 	      	$scope.createOpening($scope.opening);
 	      }
 
@@ -110,4 +116,4 @@ function createOpeningCtrl($scope, $state, $location, openingsService) {
 
 angular
   .module('urbanApp')
-  .controller('createOpeningCtrl', ['$scope','$state','$location','openingsService', createOpeningCtrl]);
+  .controller('createOpeningCtrl', ['$scope','$state','$location','openingsService','usersService', createOpeningCtrl]);

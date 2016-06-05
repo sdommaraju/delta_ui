@@ -20,6 +20,16 @@ function candidateBasicInfoCtrl($scope, $state, $location, candidateService, $ro
 
 	$scope.searchSkills = [{}];
 
+	$scope.validationOpt = {
+	    rules: {
+	      emailfield: {
+	        required: true,
+	        email:true,
+	        minlength: 1
+	      }
+	    }
+	  };
+
 	$scope.search = {
 		"keyword": "",
 		"years": "",
@@ -31,6 +41,14 @@ function candidateBasicInfoCtrl($scope, $state, $location, candidateService, $ro
 	$scope.profileBtn  = $scope.$stateParams.candidateData ? "Edit Profile" : "Create Profile";
 
   	$scope.createProfile = function () {
+  		var $valid = angular.element('#candidateForm').valid();
+	      if (!$valid) {
+	        return false;
+	      }
+	    var $valid1 = angular.element('#candidateForm1').valid();
+	      if (!$valid1) {
+	        return false;
+	      }
   		if($scope.profileBtn == "Create Profile"){
   			candidateService.fnAddProfile(
 			$scope.profileObj).then(function(response){

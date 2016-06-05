@@ -32,7 +32,9 @@
 .sidebar-panel > nav a {
 	color : #fff;
 }
-
+.activeTab { 
+	background-color: #3f485a; 
+ }
 .logoText { 
 	color : #fff;
 	font-size: 22px;

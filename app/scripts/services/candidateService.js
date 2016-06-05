@@ -10,7 +10,7 @@ function candidateService($http, ajaxService) {
         search: ajaxService.config.api_url+'search',
         candidateJobs: ajaxService.config.api_url+'candidate/',
         allJobs: ajaxService.config.api_url+'jobs',
-        assignJob: ajaxService.config.api_url+'andidate/'
+        assignJob: ajaxService.config.api_url+'candidate/'
       };
 
   output.fnGetData = function (oData) {

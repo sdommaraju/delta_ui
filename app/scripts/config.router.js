@@ -351,10 +351,27 @@ angular
       .state('app.candidateadd', {
         templateUrl: 'views/candidates/candidateBasicInfo.html',
         resolve: {
-            deps: ['$ocLazyLoad', function ($ocLazyLoad) {
-              return $ocLazyLoad.load('scripts/controllers/candidates/candidatebasicinfo.js')
-              }]
+            
+
+              deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+              return $ocLazyLoad.load([
+                {
+                  insertBefore: '#load_styles_before',
+                  files: [
+                            ]
+                        },
+                {
+                  files: [
+                                'vendor/jquery-validation/dist/jquery.validate.min.js',
+                            ]
+                        }]).then(function () {
+                return $ocLazyLoad.load('scripts/controllers/candidates/candidatebasicinfo.js')
+              });
+                    }]
           },
+
+          
+
           data: {
             title: 'Candidates',
           },

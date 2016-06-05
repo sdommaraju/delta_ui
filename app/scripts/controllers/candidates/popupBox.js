@@ -51,7 +51,7 @@
       $scope.changeStage = function () {
         var obj = {};
         obj.candidate_id = $scope.candidateId;
-        obj.job_id = $scope.selectedJob.job.id;
+        obj.job_id = $scope.selectedJob;
         obj.stage  = $scope.selectedStage;
 
         candidateService.fnChangeStage(
