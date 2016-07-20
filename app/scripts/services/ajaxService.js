@@ -31,7 +31,7 @@ function ajaxService($http,$state,Session) {
     return $http.get(
       oData.url+"?access_token="+oData.data.access_token,{
       params: oData.data
-    }).then(function(response){
+    },{headers:{'x-auth-token':'32342134'}}).then(function(response){
       return response;
     }, function(error){
       if(error.status==500){

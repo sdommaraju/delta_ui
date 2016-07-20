@@ -2,48 +2,48 @@
   <div class="panel-body">
     <div class="row no-margin">
       <div class="col-lg-12">
-        <form class="form-horizontal" role="form">
+        <form class="form-horizontal" role="form" id="agencyForm" ui-jq="validate" ui-options="validationOpt">
           <div class="form-group">
             <label class="col-sm-2 control-label">Agency Name</label>
             <div class="col-sm-10">
-              <input type="text" ng-model="agency.name" class="form-control">
+              <input type="text" ng-model="agency.name" id="name" name="name" class="form-control">
             </div>
           </div>
           <div class="form-group">
             <label class="col-sm-2 control-label">Email</label>
             <div class="col-sm-10">
-              <input type="text" ng-model="agency.email" class="form-control">
+              <input type="text" ng-model="agency.email" id="email" name="email" class="form-control">
             </div>
           </div>
           <div class="form-group">
             <label class="col-sm-2 control-label">Phone Number</label>
             <div class="col-sm-10">
-              <input type="text" ng-model="agency.phone_number" class="form-control">
+              <input type="text" ng-model="agency.phone_number"  id="phone_numbe" name="phone_number" class="form-control">
             </div>
           </div>
           
           <div class="form-group">
             <label class="col-sm-2 control-label">Address</label>
             <div class="col-sm-10">
-              <input type="text" ng-model="agency.address" class="form-control">
+              <input type="text" ng-model="agency.address" id="address" name="address" class="form-control">
             </div>
           </div>
           <div class="form-group">
             <label class="col-sm-2 control-label">City</label>
             <div class="col-sm-10">
-              <input type="text" ng-model="agency.city" class="form-control">
+              <input type="text" ng-model="agency.city" id="city" name="city" class="form-control">
             </div>
           </div>
           <div class="form-group">
             <label class="col-sm-2 control-label">State</label>
             <div class="col-sm-10">
-              <input type="text" ng-model="agency.state" class="form-control">
+              <input type="text" ng-model="agency.state" id="state" name="state" class="form-control">
             </div>
           </div>
           <div class="form-group">
             <label class="col-sm-2 control-label">Zip Code</label>
             <div class="col-sm-10">
-              <input type="text" ng-model="agency.zip" class="form-control">
+              <input type="text" ng-model="agency.zip" id="zip" name="zip" class="form-control"
             </div>
           </div>
                     <div class="wizard-pager">

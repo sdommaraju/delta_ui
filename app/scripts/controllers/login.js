@@ -2,22 +2,25 @@
 
 function loginCtrl($scope, $state, $rootScope, AUTH_EVENTS, AuthService) {
 
+  $scope.user = {};
+    
   $scope.credentials = {
     username: '',
     password: ''
   };
   $scope.submit = function (credentials) {
+
+
     AuthService.login(credentials).then(function (user) {
  
       $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
       $scope.setCurrentUser(user);
       $scope.user = user;
 
-
       if($scope.user.role.id==1){
-        $state.go('app.agencies');
+        $state.transitionTo('app.agencies',{}, { reload: true });
       } else if($scope.user.role.id) {
-        $state.go('app.dashboard');  
+        $state.transitionTo('app.dashboard',{}, { reload: true });  
       } else {
         $state.go('user.login'); 
       }

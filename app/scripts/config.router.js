@@ -37,6 +37,7 @@ angular
         .state('app', {
           abstract: true,
           templateUrl: 'views/common/layout.html',
+          controller: 'AppCtrl'
         })
 
       .state('user.login', {
@@ -145,7 +146,7 @@ angular
                     }]
           },
         data: {
-            title: 'Register new Agencies',
+            title: 'Register new Agency',
           }
       })
 

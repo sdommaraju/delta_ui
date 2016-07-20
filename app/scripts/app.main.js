@@ -43,6 +43,7 @@ angular
         avatar: 'images/avatar.jpg',
       };
       $scope.user = Session.getUserData();
+
       if (angular.isDefined($localStorage.layout)) {
         $scope.app.layout = $localStorage.layout;
       } else {

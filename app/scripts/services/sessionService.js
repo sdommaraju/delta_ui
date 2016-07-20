@@ -10,6 +10,7 @@ angular
 
     return {
     setUserData: function(data) {
+      
       $window.localStorage && $window.localStorage.setItem('my-storage', JSON.stringify(data));
       return this;
     },

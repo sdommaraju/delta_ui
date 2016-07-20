@@ -69,10 +69,11 @@ function registerAgencyCtrl($scope, $location, agenciesService) {
       }
 
       if($scope.action=='account'){
-      	$scope.registerAgency($scope.agency);
-      	angular.element('#next-button').html('Finish');
+      	//$scope.registerAgency($scope.agency);
+      	$scope.action = 'agency';
+      	angular.element('#next-button').html('Setup Account');
       } else {
-      	$scope.updateAgency($scope.agency);
+      	$scope.registerAgency($scope.agency);
       	angular.element('#next-button').html('Success');
       }
       

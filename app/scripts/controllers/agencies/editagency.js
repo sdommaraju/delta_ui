@@ -14,38 +14,41 @@ function editAgencyCtrl($scope, $state, $location, agenciesService) {
 	        email: true,
 	        minlength: 3
 	      },
-	      first_name: {
-	        required: true,
-	        minlength: 3
-	      },
-	      last_name: {
-	        required: true,
-	        minlength: 1
-	      },
-	      password: {
-	        required: true,
-	        minlength: 6
-	      },
-	      confirm_password: {
-	        required: true,
-	        minlength: 6,
-	        equalTo: '#password'
-	      },
 	      name: {
 	        required: true,
 	        minlength: 3
+	      },
+	      address: {
+	        required: true,
+	        minlength: 1
+	      },
+	      phone_number: {
+	        required: true,
+	        minlength: 2
+	      },
+	      city: {
+	        required: true,
+	        minlength: 2
+	      },
+	      state: {
+	        required: true,
+	        minlength: 2
+	      },
+	      zip: {
+	        required: true,
+	        minlength: 5
 	      }
 	    }
 	  };
 
   $scope.updateAgency = function(agency){
-
-  	/*var $valid = angular.element('#agencyForm').valid(),
-        $validator;
+  	
+  	var $valid = angular.element('#agencyForm').valid(),$validator;
+  		
       if (!$valid) {
-        $validator.focusInvalid();
+       
         return false;
-      }*/
+      }
 
   	agenciesService.fnUpdateAgencyDetails(agencyId,agency).then(function(response){
 	    $state.go('app.agencies');
