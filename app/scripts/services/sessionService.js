@@ -11,12 +11,12 @@ angular
     return {
     setUserData: function(data) {
       
-      $window.localStorage && $window.localStorage.setItem('my-storage', JSON.stringify(data));
+      $window.sessionStorage && $window.sessionStorage.setItem('my-storage', JSON.stringify(data));
       return this;
     },
     getUserData: function() {
-      if($window.localStorage)
-        return JSON.parse($window.localStorage.getItem('my-storage'));
+      if($window.sessionStorage)
+        return JSON.parse($window.sessionStorage.getItem('my-storage'));
       else
         return false;
     }

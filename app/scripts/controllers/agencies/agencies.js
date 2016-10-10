@@ -1,6 +1,6 @@
 'use strict';
 
-function agenciesCtrl($scope, $state, $location, AuthService, agenciesService) {
+function agenciesCtrl($scope, $state, $location, SweetAlert, COLORS, AuthService, agenciesService) {
 
   $scope.agencies = {};
   $scope.agency = {};
@@ -15,6 +15,32 @@ function agenciesCtrl($scope, $state, $location, AuthService, agenciesService) {
   $scope.editAgency = function(agencyId) {
     $state.go('app.edit-agency',{"id": agencyId}); 
   }
+
+  $scope.deleteAgency = function(agencyId){
+    
+
+    SweetAlert.swal({
+        title: 'Are you sure?',
+        text: '',
+        type: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: COLORS.danger,
+        confirmButtonText: 'Yes, delete it!',
+        closeOnConfirm: false,
+        closeOnCancel: true
+      },
+      function (isConfirm) {
+        if (isConfirm) {
+          agenciesService.fnDeleteAgency(agencyId).then(function(response){
+            $scope.init();
+            swal('Deleted!', 'Agency Deleted!', 'success');
+          },function(){
+            console.log("in agency error:",arguments);
+          });
+        }
+      });
+  }
+
   $scope.init = function () {
     agenciesService.fnGetAgencies({}).then(function(data){
         $scope.agencies = data.data;
@@ -30,4 +56,4 @@ function agenciesCtrl($scope, $state, $location, AuthService, agenciesService) {
 
 angular
   .module('urbanApp')
-  .controller('agenciesCtrl', ['$scope','$state', '$location', 'AuthService', 'agenciesService', agenciesCtrl]);
+  .controller('agenciesCtrl', ['$scope','$state', '$location', 'SweetAlert','COLORS','AuthService', 'agenciesService', agenciesCtrl]);

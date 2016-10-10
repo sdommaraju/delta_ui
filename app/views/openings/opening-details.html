@@ -4,7 +4,8 @@
     <div class="panel-body" style="margin:0px 5px;background: #fff;">
         <div class="table-responsive">
               <label>Assigned Candidates  for opening : </label><label class="bold">{{openingDetails.title}} <span class="badge badge bg-primary">{{ cnt = openingCandidates.screening.length+openingCandidates.phone_interview.length+openingCandidates.face_to_face.length+openingCandidates.job_offered.length+openingCandidates.job_accepted.length+openingCandidates.job_rejected.length}}</span></label>
-               
+               <button class="btn btn-primary btn-xs pull-right" ng-click="sendToVendors(openingDetails.id)">Send To Vendors</button>
+    
                 <table  class="table table-striped mb0">
                   <tr align="center" style="font-size:20px;">
                       <td ><span>{{ cnt }}</span><br><br><span>/ {{openingDetails.openings_available}}</span></td>

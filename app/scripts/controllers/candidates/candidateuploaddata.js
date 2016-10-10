@@ -1,6 +1,6 @@
 'use strict';
 
-function candidateUploadCtrl($scope, $location, $modal, candidateService, $rootScope) {
+function candidateUploadCtrl($scope, $state, $location, $modal, candidateService, $rootScope) {
 
 	$scope.candidateId = $scope.$stateParams.candidateId;
 	$scope.skills = {};
@@ -27,7 +27,7 @@ function candidateUploadCtrl($scope, $location, $modal, candidateService, $rootS
 	    }
 	});
   }
-
+  
   $scope.uploadDocument = function () {
    	$modal.open({
 	    backdrop: true,
@@ -70,17 +70,41 @@ function candidateUploadCtrl($scope, $location, $modal, candidateService, $rootS
   	candidateService.fnGetCandidateJobs(
 		candidate).then(function(response){
 			$scope.candidateJobs = response.data.data;
-			$scope.profileObj = $scope.candidateJobs[0].candidate;
-			$scope.documents = {
-				"title":$scope.candidateJobs[0].candidate.resume_file,
-				"created":$scope.candidateJobs[0].candidate.created_at,
-				"updated":$scope.candidateJobs[0].candidate.updated_at
-			};
 		},function(){
 			console.log("in candidateCtrl success:",arguments);
 		});
   };
+  $scope.getCandidateJobsHistory = function () {
+  	var candidate = {};
+  	candidate.id = $scope.candidateId;
+  	candidateService.fnGetCandidateJobsHistory(
+		candidate).then(function(response){
+			$scope.candidateJobsHistory = response.data.data;
+		},function(){
+			console.log("in candidateCtrl success:",arguments);
+		});
+  };
+  $scope.openingDetails = function(openingId) {
+    $state.go('app.opening-details',{"id": openingId});
+  }
+  $scope.getCandidateProfile = function () {
+  	var candidate = {};
+  	candidate.id = $scope.candidateId;
+  	candidateService.fnGetCandidateProfile(
+		candidate).then(function(response){
+			$scope.profileObj = response.data;
 
+			$scope.documents = {
+				"title":$scope.profileObj.resume_file,
+				"created":$scope.profileObj.created_at.date,
+				"updated":$scope.profileObj.updated_at.date
+			};
+
+
+		},function(){
+			console.log("in candidateCtrl success:",arguments);
+		});
+  };
   $scope.getAllJobs = function () {
   	var candidate = {};
   	candidateService.fnGetAllJobs(
@@ -93,6 +117,12 @@ function candidateUploadCtrl($scope, $location, $modal, candidateService, $rootS
 
   $rootScope.$on("UpdateAssignedOpenings", function (evt, data) {
   		$scope.candidateJobs.push(data);
+  });
+
+  $rootScope.$on("UpdateCandidateResume", function (evt, data) {
+  		
+  		$scope.documents = data;
+  		//$scope.documents.push(data);
   });
 
   $rootScope.$on("UpdateChangedStage", function (evt, data) {
@@ -135,10 +165,10 @@ function candidateUploadCtrl($scope, $location, $modal, candidateService, $rootS
 		},function(){
 			console.log("in candidateCtrl success:",arguments);
 		});
-
+	$scope.getCandidateProfile();
 	$scope.getCandidateJobs();
 	$scope.getAllJobs();
-
+	$scope.getCandidateJobsHistory();
   }
 
   $scope.init();
@@ -147,4 +177,4 @@ function candidateUploadCtrl($scope, $location, $modal, candidateService, $rootS
 
 angular
   .module('urbanApp')
-  .controller('candidateUploadCtrl', ['$scope','$location','$modal', 'candidateService', '$rootScope', candidateUploadCtrl]);
+  .controller('candidateUploadCtrl', ['$scope','$state','$location','$modal', 'candidateService', '$rootScope', candidateUploadCtrl]);

@@ -1,6 +1,6 @@
 'use strict';
 
-    function PopupBoxController($scope, $state, $modalInstance, model, candidateService, $rootScope) {
+    function PopupBoxController($scope, $state, $modalInstance, model, candidateService,vendorService, $rootScope) {
     $scope.title = model.title;
     $scope.message = model.message;
     $scope.buttons = model.buttons;
@@ -8,6 +8,7 @@
     $scope.jobs      = model.data;
     $scope.jobStages = model.jobStages;
     $scope.selectedJob =  model.selectedJob;
+    $scope.jobId = model.jobId;
 
     if(model.selectedJob)
       $scope.selectedStage = model.selectedJob.stage; 
@@ -21,18 +22,28 @@
 
         candidateService.fnUploadResumeByFile(
   			{id:$scope.candidateId},fd).then(function(response){
+          debugger;
           $scope.documents = {
             "title":response.data.resume_file,
-            "created":response.data.created_at,
-            "updated":response.data.updated_at
+            "created":response.data.created_at.date,
+            "updated":response.data.updated_at.date
           };
+          $rootScope.$emit("UpdateCandidateResume", $scope.documents);
   				$state.go('app.candidateuploaddata',{"candidateId": $scope.candidateId});
           $modalInstance.close(response.data);
   			},function(){
   				console.log("in candidateCtrl success:",arguments);
   			});
       };
+      $scope.sendEmailToVendors = function(){
+        vendorService.fnSendEmailToVendors(
+        $scope.group.id,{job_id:$scope.jobId}).then(function(response){
+           $modalInstance.close(response.data);
+        },function(){
+          console.log("in candidateCtrl success:",arguments);
+        });
 
+      }
       $scope.assignOpening = function(){
         var candidate = {};
         candidate.id = $scope.candidateId;
@@ -50,10 +61,11 @@
 
       $scope.changeStage = function () {
         var obj = {};
+
         obj.candidate_id = $scope.candidateId;
         obj.job_id = $scope.selectedJob;
         obj.stage  = $scope.selectedStage;
-
+        obj.comments = $scope.comments;
         candidateService.fnChangeStage(
         obj).then(function(response){
            $scope.updatedJob = {};
@@ -74,4 +86,4 @@
 
 angular
   .module('urbanApp')
-  .controller('PopupBoxController', ['$scope', '$state', '$modalInstance', 'model', 'candidateService', '$rootScope', PopupBoxController]);
+  .controller('PopupBoxController', ['$scope', '$state', '$modalInstance', 'model', 'candidateService','vendorService', '$rootScope', PopupBoxController]);

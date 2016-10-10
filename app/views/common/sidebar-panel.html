@@ -38,30 +38,52 @@
       </a>
     </li>
 
-    <li ui-sref-active="activeTab" ng-if="user.role.id==2 || user.role.id==4 || user.role.id==5 ">
+    <li ui-sref-active="activeTab" ng-if="user.role.id==2 || user.role.id==3 || user.role.id==4 || user.role.id==5 ">
       <a ui-sref="app.openings">
         <i class="fa fa-flask"></i>
         <span>OPENINGS</span>
       </a>
     </li>
-    <li ui-sref-active="activeTab" ng-if="user.role.id==2 || user.role.id==4">
+    <li ui-sref-active="activeTab" ng-if="user.role.id==2 || user.role.id==3 || user.role.id==4 || user.role.id==5">
       <a ui-sref="app.candidates">
         <i class="fa fa-user"></i>
         <span>CANDIDATES</span>
       </a>
     </li>
-    <li ui-sref-active="activeTab" ng-if="user.role.id==2 || user.role.id==4">
+    <li ui-sref-active="activeTab" ng-if="user.role.id==2 || user.role.id==3 || user.role.id==4">
       <a ui-sref="app.companies">
         <i class="fa fa-building-o"></i>
         <span>COMPANIES</span>
       </a>
     </li>
-    <li ui-sref-active="activeTab" ng-if="user.role.id==2">
+    <li ui-sref-active="activeTab" ng-if="user.role.id==2 || user.role.id==3">
       <a ui-sref="app.users">
         <i class="fa fa-users"></i>
         <span>USERS</span>
       </a>
     </li>
+
+    <li ui-sref-active="activeTab" ng-show="user.role.id==2">
+      <a href="javascript:;">
+        <i class="fa fa-level-down"></i>
+        <span>VENDORS</span>
+      </a>
+      <ul class="sub-menu">
+        <li ui-sref-active="activeTab">
+          <a ui-sref="app.vendors">
+            <i class="toggle-accordion"></i>
+            <span>Vendors</span>
+          </a>
+        </li>
+        <li ui-sref-active="activeTab">
+          <a ui-sref="app.groups">
+            <i class="toggle-accordion"></i>
+            <span>Groups</span>
+          </a>
+        </li>
+      </ul>
+    </li>
+
   </ul>
 </nav>
 <!-- /main navigation -->

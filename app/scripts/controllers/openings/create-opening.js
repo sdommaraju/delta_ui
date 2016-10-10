@@ -22,7 +22,7 @@ function createOpeningCtrl($scope, $state, $location, openingsService,usersServi
 	        required: true,
 	        minlength: 1
 	      },
-	      company_id: {
+	      client_name: {
 	        required: true
 	      },
 	      bill_rate: {
@@ -68,10 +68,14 @@ function createOpeningCtrl($scope, $state, $location, openingsService,usersServi
          return company.id==companyId;
         });
         $scope.company = $scope.companyDetails[0];
+        $scope.company.client_name = $scope.companyDetails[0].name;
+        //$scope.company.contact_email = $scope.companyDetails[0].contact_email;
+        $scope.company.contact_location = $scope.companyDetails[0].city+','+$scope.companyDetails[0].state;
 	}
 
-	$scope.createOpening = function(opening){
-	  	openingsService.fnAddOpening(opening).then(function(response){
+	$scope.createOpening = function(opening,company){
+		var openingDetails = angular.extend({},opening,company);
+		openingsService.fnAddOpening(openingDetails).then(function(response){
 		    $scope.openingDetails = response.data.data;
 		    $state.go('app.openings');
 		  },function(){
@@ -103,7 +107,7 @@ function createOpeningCtrl($scope, $state, $location, openingsService,usersServi
 	        return false;
 	      }
 	      if(index==4){
-	      	$scope.createOpening($scope.opening);
+	      	$scope.createOpening($scope.opening,$scope.company);
 	      }
 
 	    },

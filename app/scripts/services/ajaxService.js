@@ -7,7 +7,9 @@ function ajaxService($http,$state,Session) {
       client_id:'f3d259ddd3ed8ff3843839b',
       client_secret:'4c7f6f8fa93d59c45502c0ae8c4a95b',
       //api_url : 'http://delta.net/api/'
-      api_url : 'http://delta.srinutech.com/api/'
+      //api_url : 'http://delta.srinutech.com/api/'
+      api_url : 'http://delta.sophisticatedtec.com/api/'
+
     };
 
   output.config = config;
@@ -102,7 +104,24 @@ function ajaxService($http,$state,Session) {
         }
       });
   }
+  output.fnDeleteData = function (oData) {
+      angular.extend(oData.data, config);
+      if(output.access_token){
+        oData.data.access_token = output.access_token;
+      }
+      $http.defaults.headers.common.Accept = "application/vnd.delta.v1+json";
+      $http.defaults.headers.common.Authorization = "Bearer "+oData.data.access_token;
 
+      return $http.delete(oData.url, oData.data).then(function(response){
+        return response;
+      }, function(error){
+        if(error.status==500){
+          $state.go('user.login');
+        } else {
+          return error;  
+        }
+      });
+  }
   return output;
 }
 

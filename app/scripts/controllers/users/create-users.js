@@ -47,6 +47,7 @@ function createUserCtrl($scope, $state, $location, usersService) {
 	$scope.init();
 	
 	$scope.changeRole = function() {
+		
 		var role_id = $scope.appUser.role_id;
 		if(role_id==4){
 			$scope.showGroupName = true;
@@ -58,6 +59,7 @@ function createUserCtrl($scope, $state, $location, usersService) {
 			$scope.showGroupName = false;
 			$scope.showGroupList = false;
 		}
+		debugger;
 	}
 
 	$scope.createUser = function(appUser){
@@ -79,39 +81,8 @@ function createUserCtrl($scope, $state, $location, usersService) {
 		    console.log("in candidateCtrl error:",arguments);
 		  });
 	  }
-	  $scope.updateAgency = function(agency){
-	  	debugger;
-	  	agenciesService.fnUpdateAgencyDetails($scope.agencyDetails.id,agency).then(function(response){
-		    $scope.agencyDetails = response.data.data;
-		  },function(){
-		    console.log("in candidateCtrl error:",arguments);
-		  });
-	  	$scope.action = 'account';
-	  }
-	  $scope.wizardOpt = {
-
-	    tabClass: '',
-	    'nextSelector': '.button-next',
-	    'previousSelector': '.button-previous',
-	    'firstSelector': '.button-first',
-	    'lastSelector': '.button-last',
-	    onNext: function (tab, navigation, index) {
-
-	     var $valid = angular.element('#openingForm').valid(),
-	        $validator;
-	      if (!$valid) {
-	        $validator.focusInvalid();
-	        return false;
-	      }
-	      if(index==3){
-	      	$scope.createOpening($scope.opening);
-	      }
-
-	    },
-	    onTabClick: function () {
-	      return false;
-	    }
-	  };
+	  
+	  
 
 	}
 

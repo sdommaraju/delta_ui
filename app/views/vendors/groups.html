@@ -1,0 +1,38 @@
+<div data-ng-controller="vendorgroupsCtrl">
+  <div class="panel">
+    <div class="panel-heading">
+      Vendor Groups
+      <button class="btn btn-primary btn-xs pull-right" data-ng-click="registerNewVendorGroup()">Register new Group</button>
+    </div>
+    <div class="panel-body">
+      <div class="table-responsive">
+      <table class="table table-bordered table-hover table-condensed align-middle">
+        <tr class="bold">
+          <td style="width:45%">Name</td>
+          <td style="width:45%">Description</td>
+          <td style="width:20%"></td>
+        </tr>
+        <tr ng-repeat="group in groups">
+          <td>
+            <!-- editable username (text with validation) -->
+            <span editable-text="user.name" e-name="name" e-form="rowform" e-required>
+              {{ group.name }}
+            </span>
+          </td>
+          <td>
+            <!-- editable username (text with validation) -->
+            <span editable-text="user.name" e-name="name" e-form="rowform" e-required>
+              {{ group.description  }}
+            </span>
+          </td>
+          
+          <td style="white-space: nowrap">
+            <button class="btn btn-primary btn-xs" ng-click="editVendorGroup({{ group.id }})">Edit</button>
+            <button class="btn btn-danger btn-xs" ng-click="deleteVendorGroup({{ group.id }})">Delete</button>
+          </td>
+        </tr>
+      </table>
+    </div>
+    </div>
+  </div>
+</div>

@@ -11,7 +11,7 @@ angular
       });
 
       $rootScope.$on('$stateChangeStart', function (event, next) {
-
+        
         var isLogin = next.name === "login";
         if(!isLogin){
            if(!AuthService.isAuthenticated()) {
@@ -112,8 +112,25 @@ angular
         templateUrl: 'views/agencies/agencies.html',
         resolve: {
             deps: ['$ocLazyLoad', function ($ocLazyLoad) {
-              return $ocLazyLoad.load('scripts/controllers/agencies/agencies.js')
-              }]
+              //return $ocLazyLoad.load('scripts/controllers/agencies/agencies.js')
+
+              return $ocLazyLoad.load([
+                {
+                  insertBefore: '#load_styles_before',
+                  files: ['vendor/sweetalert/dist/sweetalert.css']
+                 },
+                {
+                  name: 'oitozero.ngSweetAlert',
+                  files: [
+                                'vendor/sweetalert/dist/sweetalert.min.js',
+                                'vendor/angular-sweetalert/SweetAlert.min.js'
+                            ]
+                        }]).then(function () {
+                return $ocLazyLoad.load('scripts/controllers/agencies/agencies.js');
+              });
+            }]
+
+             
           },
           data: {
             title: 'Agencies',
@@ -122,6 +139,8 @@ angular
           url: '/agencies'
 
       })
+
+      
 
       .state('app.register-agency', {
         templateUrl: 'views/agencies/create-agency.html',
@@ -232,6 +251,168 @@ angular
           }
       })
 
+      .state('app.groups', {
+        templateUrl: 'views/vendors/groups.html',
+        
+
+          resolve: {
+            deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+              //return $ocLazyLoad.load('scripts/controllers/agencies/agencies.js')
+
+              return $ocLazyLoad.load([
+                {
+                  insertBefore: '#load_styles_before',
+                  files: ['vendor/sweetalert/dist/sweetalert.css']
+                 },
+                {
+                  name: 'oitozero.ngSweetAlert',
+                  files: [
+                                'vendor/sweetalert/dist/sweetalert.min.js',
+                                'vendor/angular-sweetalert/SweetAlert.min.js'
+                            ]
+                        }]).then(function () {
+                return $ocLazyLoad.load('scripts/controllers/vendors/groups.js')
+              });
+            }]
+
+             
+          },
+
+
+          data: {
+            title: 'Vendor Groups',
+          },
+          url: '/groups',
+      })
+
+      .state('app.register-group', {
+        templateUrl: 'views/vendors/create-group.html',
+        url: '/register-group',
+        resolve: {
+            deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+              return $ocLazyLoad.load([
+                {
+                  insertBefore: '#load_styles_before',
+                  files: [
+                            ]
+                        },
+                {
+                  files: [
+                                'vendor/bootstrap/js/tab.js',
+                                'vendor/jquery-validation/dist/jquery.validate.min.js'
+                            ]
+                        }]).then(function () {
+                return $ocLazyLoad.load('scripts/controllers/vendors/registergroup.js');
+              });
+                    }]
+          },
+        data: {
+            title: 'Register new Vendor Group',
+          }
+      })
+
+      .state('app.edit-group', {
+        templateUrl: 'views/vendors/edit-group.html',
+        url: '/edit-group/:id',
+        resolve: {
+            deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                    return $ocLazyLoad.load([
+                     
+                      {
+                        files: [
+                                      'vendor/jquery-validation/dist/jquery.validate.min.js',
+                                  ]
+                              }]).then(function () {
+                      return $ocLazyLoad.load('scripts/controllers/vendors/editgroup.js');
+                    });
+                    }]
+          },
+        data: {
+            title: 'Update Vendor Group',
+          }
+      })
+
+
+      .state('app.vendors', {
+        templateUrl: 'views/vendors/vendors.html',
+        
+
+          resolve: {
+            deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+              //return $ocLazyLoad.load('scripts/controllers/agencies/agencies.js')
+
+              return $ocLazyLoad.load([
+                {
+                  insertBefore: '#load_styles_before',
+                  files: ['vendor/sweetalert/dist/sweetalert.css']
+                 },
+                {
+                  name: 'oitozero.ngSweetAlert',
+                  files: [
+                                'vendor/sweetalert/dist/sweetalert.min.js',
+                                'vendor/angular-sweetalert/SweetAlert.min.js'
+                            ]
+                        }]).then(function () {
+                return $ocLazyLoad.load('scripts/controllers/vendors/vendors.js')
+              });
+            }]
+
+             
+          },
+
+
+          data: {
+            title: 'Vendors',
+          },
+          url: '/vendors',
+      })
+
+      .state('app.register-vendor', {
+        templateUrl: 'views/vendors/create-vendor.html',
+        url: '/register-vendor',
+        resolve: {
+            deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+              return $ocLazyLoad.load([
+                {
+                  insertBefore: '#load_styles_before',
+                  files: [
+                            ]
+                        },
+                {
+                  files: [
+                                'vendor/bootstrap/js/tab.js',
+                                'vendor/jquery-validation/dist/jquery.validate.min.js'
+                            ]
+                        }]).then(function () {
+                return $ocLazyLoad.load('scripts/controllers/vendors/registervendor.js');
+              });
+                    }]
+          },
+        data: {
+            title: 'Register new Vendor',
+          }
+      })
+
+      .state('app.edit-vendor', {
+        templateUrl: 'views/vendors/edit-vendor.html',
+        url: '/edit-vendor/:id',
+        resolve: {
+            deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                    return $ocLazyLoad.load([
+                     
+                      {
+                        files: [
+                                      'vendor/jquery-validation/dist/jquery.validate.min.js',
+                                  ]
+                              }]).then(function () {
+                      return $ocLazyLoad.load('scripts/controllers/vendors/editvendor.js');
+                    });
+                    }]
+          },
+        data: {
+            title: 'Update Vendor',
+          }
+      })
 
       .state('app.openings', {
         templateUrl: 'views/openings/openings.html',
@@ -300,7 +481,23 @@ angular
         templateUrl: 'views/users/users.html',
         resolve: {
             deps: ['$ocLazyLoad', function ($ocLazyLoad) {
-              return $ocLazyLoad.load('scripts/controllers/users/users.js')
+              //return $ocLazyLoad.load('scripts/controllers/users/users.js')
+              
+              return $ocLazyLoad.load([
+                {
+                  insertBefore: '#load_styles_before',
+                  files: ['vendor/sweetalert/dist/sweetalert.css']
+                 },
+                {
+                  name: 'oitozero.ngSweetAlert',
+                  files: [
+                                'vendor/sweetalert/dist/sweetalert.min.js',
+                                'vendor/angular-sweetalert/SweetAlert.min.js'
+                            ]
+                        }]).then(function () {
+                return $ocLazyLoad.load('scripts/controllers/users/users.js');
+              });
+
               }]
           },
           data: {
@@ -336,6 +533,28 @@ angular
             title: 'Create new User',
           }
       })
+
+    .state('app.edit-user', {
+        templateUrl: 'views/users/edit-users.html',
+        url: '/edit-user/:id',
+        resolve: {
+            deps: ['$ocLazyLoad', function ($ocLazyLoad) {
+                    return $ocLazyLoad.load([
+                     
+                      {
+                        files: [
+                                      'vendor/jquery-validation/dist/jquery.validate.min.js',
+                                  ]
+                              }]).then(function () {
+                      return $ocLazyLoad.load('scripts/controllers/users/edituser.js');
+                    });
+                    }]
+          },
+        data: {
+            title: 'Update User',
+          }
+      })
+
       .state('app.candidates', {
         templateUrl: 'views/candidates/candidates.html',
         resolve: {
@@ -597,7 +816,7 @@ angular
                 {
                   insertBefore: '#load_styles_before',
                   files: ['vendor/sweetalert/dist/sweetalert.css']
-                        },
+                 },
                 {
                   name: 'oitozero.ngSweetAlert',
                   files: [

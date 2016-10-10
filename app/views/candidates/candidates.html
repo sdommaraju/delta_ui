@@ -4,7 +4,7 @@
       Candidates
       <div class="pull-right">
           <button class="btn btn-primary btn-xs" data-ng-click="skillSearch()">Skill Search</button>
-          <button class="btn btn-primary btn-xs" data-ng-click="createCandiate()">Create a new Candidate</button>
+          <button class="btn btn-primary btn-xs" ng-show="user.role.id!=1" data-ng-click="createCandiate()">Create a new Candidate</button>
       </div>
     </div>
     <div class="panel-body">
@@ -14,9 +14,10 @@
           <td style="width:15%">Name</td>
           <td style="width:15%">PHONE</td>
           <td style="width:25%">EMAIL</td>
-          <td style="width:15%">SALARY</td>
+          <td style="width:10%">SALARY</td>
           <td style="width:15%">EXPERIENCE YRS</td>
           <td style="width:15%">CREATED ON</td>
+          <td style="width:5%"></td>
         </tr>
         <tr ng-repeat="candidate in candidates">
           <td>
@@ -57,7 +58,7 @@
           </td>
           <td style="white-space: nowrap">            
             <div class="buttons" ng-show="!rowform.$visible">
-              <button class="btn btn-primary btn-xs" ng-click="editCandidate({{ candidate }})">edit</button>
+              <button class="btn btn-primary btn-xs" ng-show="user.role.id==2" ng-click="editCandidate({{ candidate }})">edit</button>
             </div>
           </td>
         </tr>

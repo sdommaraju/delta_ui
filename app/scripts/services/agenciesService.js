@@ -34,6 +34,14 @@ function agenciesService($http, ajaxService) {
       return error;
     });
   }
+  output.fnDeleteAgency = function (agencyId) {
+    return ajaxService.fnDeleteData({
+      url:urls.updateAgency+'/'+agencyId,data:{}}).then(function(response){
+      return response;
+    }, function(error){
+      return error;
+    });
+  }
   output.fnGetAgencies = function () {
     return ajaxService.fnGetData({
       url:urls.getAgencies,

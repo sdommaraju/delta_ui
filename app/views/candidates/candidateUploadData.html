@@ -48,7 +48,7 @@
 		      <div class="col-lg-12">
 		        <form class="form-horizontal" role="form">
 		          <label class="heading2">Assigned Openings {{ candidateJobs.length }}</label>
-		          <button class="btn btn-primary btn-xs pull-right" data-ng-click="assignOpening()">Assign another Opening</button>
+		          <button class="btn btn-primary btn-xs pull-right" ng-show="user.role.id==4" data-ng-click="assignOpening()">Assign another Opening</button>
 
 		            <table class="table table-hover table-condensed align-middle">
 				        <tr class="bold">
@@ -60,7 +60,7 @@
 				        <tr ng-repeat="jobs in candidateJobs">
 				          <td>
 				            <!-- editable username (text with validation) -->
-				            <span e-name="jobName" e-form="rowform" e-required class="linkClick" ng-click="editProfile({{candidate}})">
+				            <span e-name="jobName" e-form="rowform" e-required class="linkClick" ng-click="openingDetails({{jobs.job.id}})">
 				              {{ jobs.job.title || 'empty' }}
 				            </span>
 				          </td>
@@ -103,14 +103,14 @@
 			      <div class="col-lg-12">
 			        <form class="form-horizontal" role="form">
 			           	<label class="heading2">Documents</label>
-			          	<button class="btn btn-primary btn-xs pull-right" data-ng-click="uploadDocument()">Upload a Document</button>
+			          	<button class="btn btn-primary btn-xs pull-right" ng-show="user.role.id==2" data-ng-click="uploadDocument()">Upload a Document</button>
 			          	<div class="table-responsive">
 			          		<table  class="table table-striped mb0">
 			          			<tr>
 			          				<td style="width:15%">TTILE</td>
                   					<td style="width:15%">DATE</td>
 			          			</tr>
-			          			<tr >
+			          			<tr>
 			          				<td>{{documents.title}}</td>
                   					<td>{{documents.updated}}</td>
 			          			</tr>
@@ -143,7 +143,7 @@
 			                  <input type="text" ng-model="exp" class="form-control"/>
 			                </div>
 	          	          <div class="col-lg-2">
-	          	          	 <button class="btn btn-primary btn-xs pull-right" data-ng-click="addMoreSkills()">Add Skill</button>
+	          	          	 <button class="btn btn-primary btn-xs pull-right" ng-show="user.role.id==2" data-ng-click="addMoreSkills()">Add Skill</button>
 	          	          </div> 
           			  </div>
 			          	   
@@ -153,4 +153,61 @@
 			  </div>
 		</div>
 	</div>
+
+	<div class="row" >
+	<div class="panel mb25 col-lg-12 col-sm-12" style="background: transparent;">
+		<div class="panel-body" style="margin:0px 5px;background: #fff;">
+		    <div class="row no-margin">
+		      <div class="col-lg-12">
+		        <form class="form-horizontal" role="form">
+		        	<label class="heading2">History</label>
+		            <table class="table table-hover table-condensed align-middle">
+				        <tr class="bold">
+				          <td style="width:15%">Job Title</td>
+				          <td style="width:15%">From Stage</td>
+				          <td style="width:25%">To Stage</td>
+				          <td style="width:15%">Changed By</td>
+				          <td style="width:15%">Date</td>
+				        </tr>
+				        <tr ng-repeat="history in candidateJobsHistory">
+				          <td>
+				            <!-- editable username (text with validation) -->
+				            <span e-name="jobName" e-form="rowform">
+				              {{ history.job.title }}
+				            </span>
+				          </td>
+				          <td>
+				            <!-- editable status (select-local) -->
+				            <span e-name="stage" e-form="rowform">
+				              {{ history.from_stage }}
+				            </span>
+				          </td>
+				          <td>
+				            <!-- editable group (select-remote) -->
+				            <span e-name="company" e-form="rowform">
+				              {{ history.to_stage}}
+				            </span>
+				          </td>
+				          <td>
+				            <!-- editable group (select-remote) -->
+				            <span e-name="jobRate" e-form="rowform">
+				              {{ history.user.first_name || ''}}
+				            </span>
+				          </td>
+
+				          <td style="white-space: nowrap">            
+				            <span e-name="jobRate" e-form="rowform">
+				              {{ history.date.date}}
+				            </span>
+				          </td>
+				        </tr>
+				      </table>
+		        </form>
+		      </div>
+		    </div>
+		  </div>
+	</div>
+</div>
+
+
 </div>

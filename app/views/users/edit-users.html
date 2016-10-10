@@ -1,6 +1,6 @@
-<div class="panel mb25 row" data-ng-controller="createUserCtrl">
+<div class="panel mb25 row" data-ng-controller="editUserCtrl">
   <div class="panel-heading">
-      Create New User
+      Update User Details
       <button class="btn btn-primary btn-xs pull-right" ui-sref="app.users">Cancel</button>
   </div>
   <div class="panel-body">
@@ -63,7 +63,7 @@
                <button class="btn btn-primary btn-xs" ui-sref="app.users">Back To List</button>
             </div>
             <div class="pull-right">
-               <button class="btn btn-primary btn-xs" data-ng-click="createUser(appUser)" ng-disabled="userForm.emailId.$error.unique">Create</button>
+               <button class="btn btn-primary btn-xs" data-ng-click="createUser(appUser)" ng-disabled="userForm.emailId.$error.unique">Update</button>
             </div>
          </div>
         

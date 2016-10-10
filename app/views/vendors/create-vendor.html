@@ -1,0 +1,50 @@
+<div class="panel mb25 row" data-ng-controller="registerVendorCtrl">
+  <div class="panel-heading">
+      Register new Vendor
+      <button class="btn btn-primary btn-xs pull-right" ui-sref="app.vendors">Cancel</button>
+  </div>
+  <div class="panel-body">
+  <form id="vendorForm" class="form-horizontal" role="form" ui-jq="validate" ui-options="validationOpt">
+    <div class="row no-margin">
+      <div class="col-lg-8">
+        <form class="form-horizontal" role="form">
+          
+          <div class="form-group">
+            <label class="col-sm-2 control-label">NAME</label>
+            <div class="col-sm-10">
+              <input type="text" ng-model="vendor.name" class="form-control" id="name" name="name">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">EMAIL</label>
+            <div class="col-sm-10">
+            <input type="text" ng-model="vendor.email_id" class="form-control" id="email_id" name="email_id">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label">GROUP</label>
+            <div class="col-sm-10">
+              <select class="form-control" ng-model="vendor.vendor_group_id" id="vendor_group_id" name="vendor_group_id">
+                <option value="">Select Group</option>
+                <option value="{{group.id}}" ng-repeat="group in groups">{{ group.name }}</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="wizard-pager">
+            <div class="pull-left">
+               <button class="btn btn-primary btn-xs" ui-sref="app.vendors">Back To List</button>
+            </div>
+            <div class="pull-right">
+               <button class="btn btn-primary btn-xs" data-ng-click="createVendor(vendor)">Create</button>
+            </div>
+         </div>
+         
+
+        </form>
+      </div>
+    </div>
+  </div>
+  </form>
+</div>
+</div>

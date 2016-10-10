@@ -38,6 +38,24 @@ function usersService($http, ajaxService) {
       return error;
     });
   }
+  output.fnGetUserDetails = function (userId) {
+    return ajaxService.fnGetData({
+      url:urls.getUsers+'/'+userId,
+      data:{}
+    }).then(function(response){
+      return response.data;
+    }, function(error){
+      return error;
+    });
+  }
+  output.fnDeleteUser = function (userId) {
+    return ajaxService.fnDeleteData({
+      url:urls.getUsers+'/'+userId,data:{}}).then(function(response){
+      return response;
+    }, function(error){
+      return error;
+    });
+  }
   output.fnGetRoles = function () {
     return ajaxService.fnGetData({
       url:urls.getRoles,

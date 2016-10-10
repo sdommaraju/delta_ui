@@ -27,6 +27,7 @@ function loginCtrl($scope, $state, $rootScope, AUTH_EVENTS, AuthService) {
       
     }, function () {
       $rootScope.$broadcast(AUTH_EVENTS.loginFailed);
+      $scope.invalidLogin = true;
     });
   };
 

@@ -9,6 +9,7 @@ angular
       urls    = {
         login: ajaxService.config.api_url+'access_token',
         profile: ajaxService.config.api_url+'user/profile',
+        validateEmail:ajaxService.config.api_url+'user/validateEmail',
         //login: 'http://localhost:9001/views/auth.json'
       };
 
@@ -40,6 +41,24 @@ angular
 
   };
  
+  authService.checkUniqueValue= function(value,type) {
+          var data = {
+            type:type,
+            'email':value
+          };
+
+          return ajaxService.fnGetData({
+            url:urls.validateEmail,
+            data:data
+          }).then(function(response){
+            return response.data.status;
+          }, function(error){
+            return error;
+          });
+
+
+        };
+
   authService.isAuthenticated = function () {
     var loginData = Session.getUserData();
     if(loginData)

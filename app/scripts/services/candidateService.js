@@ -7,7 +7,7 @@ function candidateService($http, ajaxService) {
         getCandidates: ajaxService.config.api_url+'candidate',
         uploadFile: ajaxService.config.api_url+'candidate',
         addSkills: ajaxService.config.api_url+'candidate',
-        search: ajaxService.config.api_url+'search',
+        search: ajaxService.config.api_url+'candidate/search',
         candidateJobs: ajaxService.config.api_url+'candidate/',
         allJobs: ajaxService.config.api_url+'jobs',
         assignJob: ajaxService.config.api_url+'candidate/'
@@ -51,13 +51,23 @@ function candidateService($http, ajaxService) {
       return error;
     });
   };
-
+  output.fnGetCandidateProfile = function (oData) {
+    return ajaxService.fnGetData({
+      url:urls.getCandidates+'/'+oData.id,
+      data:{}
+    }).then(function(response){
+      return response.data;
+    }, function(error){
+      return error;
+    });
+  };
+  
   output.fnUploadResumeByFile = function (oData,resume) {
     debugger;
     return ajaxService.fnPostDataFile({
       url:urls.uploadFile+'/'+oData.id+'/uploadResume',
       data:resume}).then(function(response){
-      return response;
+      return response.data;
     }, function(error){
       return error;
     });
@@ -104,7 +114,15 @@ function candidateService($http, ajaxService) {
       return error;
     });
   };
-
+output.fnGetCandidateJobsHistory = function (oData) {
+    return ajaxService.fnGetData({
+      url:urls.candidateJobs+""+oData.id+"/stage-history",
+      data : oData}).then(function(response){
+      return response;
+    }, function(error){
+      return error;
+    });
+  };
   output.fnGetAllJobs = function (oData) {
     return ajaxService.fnGetData({
       url:urls.allJobs,

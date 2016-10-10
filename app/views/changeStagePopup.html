@@ -12,6 +12,7 @@
 	        </tr>
 	        <tr>
 	          <td>
+	          	<label>
 			    <input type="radio" ng-model="selectedStage" value="face_to_face">
 			    Face to Face
 			  </label>
@@ -19,6 +20,7 @@
 	        </tr>
 	        <tr>
 	          <td>
+	          	<label>
 			    <input type="radio" ng-model="selectedStage" value="job_offered">
 			    Job Offered
 			  </label>
@@ -26,6 +28,7 @@
 	        </tr>
 	        <tr>
 	          <td>
+	          	<label>
 			    <input type="radio" ng-model="selectedStage" value="job_accepted">
 			    Job Accepted
 			  </label>
@@ -33,11 +36,23 @@
 	        </tr>
 	        <tr>
 	          <td>
+	          	<label>
 			    <input type="radio" ng-model="selectedStage" value="job_rejected">
 			    Offer Rejected
 			  </label>
 	          </td>
 	        </tr>
+
+	        <tr>
+	          <td>
+	          	<label style="vertical-align:top">
+	          	Comments :   
+			    </label>
+			    <textarea name="comments" ng-model="comments"></textarea>
+			  
+	          </td>
+	        </tr>
+
 	      </table>
     </div>
 </div>

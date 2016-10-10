@@ -2,7 +2,7 @@
   <div class="panel">
     <div class="panel-heading">
       Openings
-      <button class="btn btn-primary btn-xs pull-right" data-ng-click="createOpening()">Create a new Opening</button>
+      <button class="btn btn-primary btn-xs pull-right" ng-show="user.role.id==2 || user.role.id==3 || user.role.id==4" data-ng-click="createOpening()">Create a new Opening</button>
     <div class="panel-body">
       <div class="table-responsive">
       <table class="table table-bordered table-hover table-condensed align-middle">
